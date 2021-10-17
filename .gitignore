@@ -136,3 +136,12 @@ tp2_grupo404.log
 tp2_grupo404.synctex.gz
 tp2_grupo404.synctex(busy)
 tp2_grupo404.toc
+
+# textlive: resoluciones
+informe/src/resol*.aux
+informe/src/resol*.fdb_latexmk
+informe/src/resol*.fls
+informe/src/resol*.log
+informe/src/resol*.synctex.gz
+informe/src/resol*.synctex(busy)
+informe/src/resol*.toc
