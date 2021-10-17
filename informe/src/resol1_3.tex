@@ -1,0 +1,22 @@
+\documentclass[../tp2_grupo404.tex]{subfiles}
+
+\graphicspath{{\subfix{../out/}}}
+
+\begin{document}
+
+Para grafos densos, el algoritmo de Johnson es mejor ya que su complejidad
+temporal depende de la cantidad de aristas.
+
+Entonces, cuando el grafo es disperso el tiempo total del algoritmo
+puede ser menor que el algoritmo de Floyd-Warshall, que resuelve el
+mismo problema en un tiempo de $O(V^3)$.
+\footnote{Wikipedia (autores varios).
+\href{https://es.wikipedia.org/wiki/Algoritmo_de_Johnson}{\guillemotleft Algoritmo de Johnson \guillemotright}}
+Además, la complejidad temporal de Johnson es mejor que
+repetir Bellman-Ford por cada vértice, porque Johnson realiza una sola
+iteración de Bellman-Ford para elimina los pesos negativos,
+y luego aplica Dijkstra que tiene una complejidad menor.
+
+% FIN DEL DOCUMENTO (SECCIÓN P1.3)
+% NO BORRAR POR ACCIDENTE NI ESCRIBIR COSSA ABAJO
+\end{document}
