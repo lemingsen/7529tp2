@@ -1,18 +1,17 @@
 \documentclass[../tp2_grupo404.tex]{subfiles}
+
 \graphicspath{{\subfix{../out/}}}
 
 \begin{document}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.45\textwidth,angle=0,origin=c]{out/ford/ford1A.png}
-    \caption{\label{fig:grafoG}\textbf{Grafo G (original)}.}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.45\textwidth,angle=0,origin=c]{out/ford/ford1B.png}
-    \caption{\label{fig:grafoG_prima}\textbf{Grafo G' (con nodo temporal 0)}.}
+    \subcaptionbox
+        {\label{fig:grafoG}\textbf{Grafo G (original)}}
+        {\includegraphics[width=0.4\linewidth,angle=0,origin=c]{out/ford/ford1A.png}}
+    \subcaptionbox
+        {\label{fig:grafoG_prima}\textbf{Grafo G' (con nodo temporal 0)}}
+        {\includegraphics[width=0.4\linewidth,angle=0,origin=c]{out/ford/ford1B.png}}
 \end{figure}
 
 \end{document}
