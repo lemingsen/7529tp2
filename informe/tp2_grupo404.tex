@@ -16,13 +16,20 @@
 \usepackage{fancyvrb,newverbs,xcolor} % Para lcverbatim
 \usepackage[spanish]{babel}
 \usepackage{graphicx}
-\usepackage{hyperref}
 \usepackage{float}
 \usepackage[most]{tcolorbox}
 \usepackage{longtable}
 \usepackage{multirow}
 \usepackage{standalone}
 \usepackage{subfiles}
+\usepackage{hyperref}
+\usepackage{cleveref}
+
+\crefname{table}{cuadro}{cuadros}
+\crefname{figure}{figura}{figuras}
+\crefname{section}{sección}{secciónes}
+\crefname{subsection}{sección}{secciónes}
+\crefname{subsubsection}{sección}{secciónes}
 
 \pagestyle{fancy} % Encabezado y pie de página
 \fancyhf{}
@@ -87,7 +94,7 @@ de Johnsosn; así como también respuestas a preguntas teóricas.
 
 \newpage\section{Parte 1: Minimizando costos}\label{sec:parte1}
 
-\subsection{Enunciado}
+\textbf{Enunciado}
 
 Una empresa productora de tecnología está planeando construir una fábrica para un
 producto nuevo. Un aspecto clave en esa decisión corresponde a determinar dónde la
@@ -145,7 +152,7 @@ costos mínimos entre cada uno de los depósitos.
     Investigar el algoritmo de Johnson y explicar cómo funciona. ¿Es óptimo?
 \end{tcolorbox}
 
-\newpage\subsection{Comparación de algoritmos: Ventajas y desventajas}\label{sec:parte1_2}
+\newpage\subsection{Comparación de algoritmos: Complejidad}\label{sec:parte1_2}
 \begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=Enunciado 1.2]
     En una tabla comparar la complejidad temporal y espacial de las tres propuestas.
 \end{tcolorbox}
