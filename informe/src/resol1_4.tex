@@ -6,7 +6,7 @@
 
 \subsubsection{Convertir a grafo sin negativos (Bellman-Ford)}\label{sec:parte1_4_1}
 Para el ejemplo tomaremos un grafo G arbitrario (\cref{fig:grafoG}).
-A partir de éste, creamos un grafo $G^\prime$ (\cref{fig:grafoG_prima})
+Como tiene pesos negativos, a partir de éste, creamos un grafo $G^\prime$ (\cref{fig:grafoG_prima})
 en principio idéntico pero al que le agregamos temporalmente un
 vértice $V_0$ con aristas de peso $0$ hacia cada otro nodo preexistente.
 
@@ -146,10 +146,10 @@ Donde:
     \centering
     \subcaptionbox
         {\label{fig:GrafoH_calculos}\textbf{Cálculo de cada arista para sus pesos}.}
-        {\includegraphics[width=0.4\linewidth,angle=0,origin=c]{out/ford/ford1C.png}}
+        {\includegraphics[width=0.4\linewidth,angle=0,origin=c]{out/ford/ford1G.png}}
     \subcaptionbox
         {\label{fig:GrafoH_valores}\textbf{Grafo H con los valores calculados}.}
-        {\includegraphics[width=0.4\linewidth,angle=0,origin=c]{out/ford/ford1D.png}}
+        {\includegraphics[width=0.4\linewidth,angle=0,origin=c]{out/ford/ford1H.png}}
     \caption{\label{fig:GrafoH}\textbf{Grafo $H$} con cambios de pesos con $\hat{w}$.}
 \end{figure}
 
