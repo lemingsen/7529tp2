@@ -3,6 +3,8 @@
 \usepackage{a4wide}
 \usepackage[colorlinks=true,linkcolor=black,urlcolor=blue,bookmarksopen=true]{hyperref}
 \usepackage{bookmark}
+\usepackage{booktabs}
+\usepackage{cancel}
 \usepackage{fancyhdr}
 \usepackage{fancyvrb,newverbs,xcolor} % Para lcverbatim
 \usepackage[spanish]{babel}
@@ -13,8 +15,7 @@
 \usepackage{float}
 \usepackage[most]{tcolorbox}
 \usepackage{longtable}
-\usepackage{booktabs}
-\usepackage{cancel}
+\usepackage{standalone}
 
 \pagestyle{fancy} % Encabezado y pie de página
 \fancyhf{}
@@ -53,15 +54,7 @@
       Entrega: & nº 1 (20/10/2021) \\ \hline
   	\end{tabular}
     \vfill
-    \begin{tabular}{@{}rlc@{}}
-    \multicolumn{3}{c}{Integrantes del grupo 404}                                 \\ \midrule
-    \textbf{Padrón} & \textbf{Apellido, Nombre}           & \textbf{Email}        \\ \midrule
-    76187           & Xxxxxxxxxx, Xxxxx Xxxxx     & xxxxxxxxxxx@fi.uba.ar \\
-    97529           & Xxxxxxxx, Xxxxx Xxxxxxx     & xxxxxxxxx@fi.uba.ar   \\
-    102593          & Xxxxxx, Xxxxx Xxxxx         & xxxxxxx@fi.uba.ar     \\
-    102649          & Xxxxxx, Xxxxxxx Xxxxx       & xxxxxxx@fi.uba.ar     \\
-    106713          & Xxxx Xxxxx, Xxxxx           & xxxxx@fi.uba.ar      \\ \bottomrule
-    \end{tabular}
+    \includestandalone[mode=tex,width=\textwidth]{src/integrantes}
     \vfill
 \end{titlepage}
 
