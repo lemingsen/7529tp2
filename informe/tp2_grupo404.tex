@@ -75,6 +75,9 @@
 \tableofcontents % Índice general
 \newpage
 
+\renewcommand{\thesection}{\Alph{section}}%
+\setcounter{section}{8} % Letra H
+
 \section{Introducción}\label{sec:intro}
 \subsection{Resumen}
 El presente informe documenta el enunciado y la solución del segundo trabajo práctico
@@ -91,6 +94,9 @@ de Johnsosn; así como también respuestas a preguntas teóricas.
     \item El informe debe presentar carátula con el nombre del grupo, datos de los integrantes y y fecha de entrega. Debe incluir número de hoja en cada página.
     \item En caso de re-entrega, entregar un apartado con las correcciones mencionadas
 \end{itemize}
+
+\setcounter{section}{0}%
+\renewcommand{\thesection}{P\arabic{section}}%
 
 \newpage\section{Parte 1: Minimizando costos}\label{sec:parte1}
 
