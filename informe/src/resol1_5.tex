@@ -51,9 +51,9 @@ en infinito excepto el origen mismo.}
 \begin{table}[H]
     \begin{tabular}{@{}cccccccccccccccccc@{}}
     \toprule
-                                                                                      & \multicolumn{3}{c}{1ª iteración}                                                                                 & \multicolumn{2}{c}{V\_1} & \multicolumn{2}{c}{V\_2}                                                  & \multicolumn{2}{c}{V\_3}                                                  & \multicolumn{2}{c}{V\_4} & \multicolumn{2}{c}{V\_5} & \multicolumn{3}{c}{2ª iteración} &                              \\ \cmidrule(lr){2-17}
-    \multirow{-2}{*}{\begin{tabular}[c]{@{}c@{}}Fórmula\\ posible nuevo\end{tabular}}&Nuevo&$\lesseqgtr$& Ant. & h &    p   & h                           & p                             & h                           & p                                    & h & p      & h & p    & Nuevo     & $\lesseqgtr$              & Ant. & \multirow{-2}{*}{Resultados} \\ \cmidrule(r){1-1} \cmidrule(l){18-18} 
-    $0\rightarrow 1 \dots 0\rightarrow 5$   & {\color[HTML]{9A0000} $0+0$} & $<$ & 0                           & 0 & $V_0$ & 0                           & $V_0$                        & 0                           & $V_0$                               & 0 & $V_0$ & 0 & $V_0$ & $0+0$     & $\leq$   & h(x) & Sin cambios                  \\
+     & \multicolumn{3}{c}{1ª iteración}   & \multicolumn{2}{c}{$V_1$} & \multicolumn{2}{c}{$V_2$}  & \multicolumn{2}{c}{$V_3$} & \multicolumn{2}{c}{$V_4$} & \multicolumn{2}{c}{$V_5$} & \multicolumn{3}{c}{2ª iteración} & \\
+     \multirow{-2}{*}{\begin{tabular}[c]{@{}c@{}}Fórmula\\ posible nuevo\end{tabular}}&Nuevo&$\lesseqgtr$& Ant. & h &    p   & h                           & p                             & h                           & p                                    & h & p      & h & p    & Nuevo     & $\lesseqgtr$              & Ant. & \multirow{-2}{*}{Resultados} \\ \cmidrule(r){1-17}
+    $0\rightarrow 1 \dots 0\rightarrow 5$   & {\color[HTML]{9A0000} $0+0$} & $<$ & 0                           & 0 & $V_0$ & 0                           & $V_0$                        & 0                           & $V_0$                               & 0 & $V_0$ & 0 & $V_0$ & $0+0$     & $\geq$   & h(x) & Sin cambios                  \\
     $h(1)+w(1,2)$ & $0+12$                          & $<$                     & 0                           & 0 & $V_0$ & 0                           & $V_0$                        & 0                           & $V_0$                               & 0 & $V_0$ & 0 & $V_0$ & $0+12$    & $>$ & $-2$   & Sin cambios                  \\
     $h(1)+w(1,3)$ & {\color[HTML]{9A0000} $0+(-3)$} & {\color[HTML]{9A0000} $<$} & {\color[HTML]{9A0000} $0$}  & 0 & $V_0$ & 0                           & $V_0$                        & {\color[HTML]{9A0000} $-3$} & {\color[HTML]{9A0000} $V_1$} & 0 & $V_0$ & 0 & $V_0$ & $0+(-3)$  & $>$ & $-4$   & Sin cambios                  \\
     $h(2)+w(2,3)$ & $0+-1$                          & $>$                        & -3                          & 0 & $V_0$ & 0                           & $V_0$                        & -3                          & $V_1$                               & 0 & $V_0$ & 0 & $V_0$ & $-2+(-1)$ & $>$ & $-4$   & Sin cambios                  \\
@@ -66,4 +66,21 @@ en infinito excepto el origen mismo.}
     \end{tabular}
 \end{table}
 
+\begin{table}[H]
+    \begin{tabular}{@{}cccccccccccccccccc@{}}
+    \toprule
+     & \multicolumn{3}{c}{2ª iteración} & \\
+     \multirow{-2}{*}{\begin{tabular}[c]{@{}c@{}}Fórmula\\ posible nuevo\end{tabular}}&Nuevo&$\lesseqgtr$& Ant. & \multirow{-2}{*}{Resultados} \\ \cmidrule(r){1-5}
+    $0\rightarrow 1 \dots 0\rightarrow 5$   &  $0+0$     & $\geq$   & h(x) & Sin cambios                  \\
+    $h(1)+w(1,2)$ & $0+12$    & $>$ & $-2$   & Sin cambios                  \\
+    $h(1)+w(1,3)$ & $0+(-3)$  & $>$ & $-4$   & Sin cambios                  \\
+    $h(2)+w(2,3)$ & $-2+(-1)$ & $>$ & $-4$   & Sin cambios                  \\
+    $h(2)+w(2,4)$ & $-2+15$   & $>$ & $0$    & Sin cambios                  \\
+    $h(3)+w(3,5)$ & $-4+21$   & $>$ & $0$    & Sin cambios                  \\
+    $h(4)+w(4,2)$ & $0+(-2)$  & $>$ & $-2$   & Sin cambios                  \\
+    $h(5)+w(5,1)$ & $0+8 $    & $>$ & $0$    & Sin cambios                  \\
+    $h(5)+w(5,3)$ & $0+(-4)$  & $>$ & $-4$   & Sin cambios                  \\
+    $h(5)+w(5,4)$ & $0+13$    & $>$ & $0$    & Sin cambios                  \\ \bottomrule
+    \end{tabular}
+\end{table}
 \end{document}
