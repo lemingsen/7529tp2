@@ -236,5 +236,33 @@ para obtener la tabla \cref{tab:AjusteJohnson_valores} de distancias mínimas re
     \label{tab:AjusteJohnson_valores}
 \end{table}
     
+\subsubsection{Reconstrucción caminos mínimos}\label{sec:parte1_4_4}
+
+Para cualquier \texttt{(origen, destino)}, a partir del \cref{tab:DijkstraGrafoH_antecesor}
+podemos (recursivamenta desde \texttt{destino} al \texttt{origen})
+reconstruir el camino mínimo, sabiendo que su peso es el calculado
+en el \cref{tab:AjusteJohnson_valores}. A continuación en la figura
+\cref{fig:GrafoH_minimos}, se muestran a modo de comprobación los
+caminos mínimos según el vértice de \texttt{origen}:
+
+\begin{figure}[H]
+    \centering
+    \subcaptionbox
+        {\label{fig:GrafoH_minimos1}\textbf{Caminos mínmos desde V\textsubscript{1}}.}
+        {\includegraphics[width=0.4\linewidth,angle=0,origin=c]{out/caminos/camino1.png}}
+    \subcaptionbox
+        {\label{fig:GrafoH_minimos2}\textbf{Caminos mínmos desde V\textsubscript{2}}.}
+        {\includegraphics[width=0.4\linewidth,angle=0,origin=c]{out/caminos/camino2.png}}
+    \subcaptionbox
+        {\label{fig:GrafoH_minimos3}\textbf{Caminos mínmos desde V\textsubscript{3}}.}
+        {\includegraphics[width=0.4\linewidth,angle=0,origin=c]{out/caminos/camino3.png}}
+    \subcaptionbox
+        {\label{fig:GrafoH_minimos4}\textbf{Caminos mínmos desde V\textsubscript{4}}.}
+        {\includegraphics[width=0.4\linewidth,angle=0,origin=c]{out/caminos/camino4.png}}
+    \subcaptionbox
+        {\label{fig:GrafoH_minimos5}\textbf{Caminos mínmos desde V\textsubscript{5}}.}
+        {\includegraphics[width=0.4\linewidth,angle=0,origin=c]{out/caminos/camino5.png}}
+    \caption{\label{fig:GrafoH_minimos}\textbf{Grafo $H$} con caminos mínimos (en verde, junto con la distancia) según el punto de origen.}
+\end{figure}
 
 \end{document}
