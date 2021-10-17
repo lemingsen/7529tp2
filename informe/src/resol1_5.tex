@@ -49,6 +49,8 @@ el origen hasta cada nodo, y las mejores distancias se inicializan
 en infinito excepto el origen mismo.}
 
 \begin{table}[H]
+    \centering
+    \caption{Primera iteración de Bellman-Ford en el algoritmo de Johnson. Hay 3 cambios en 2 distancias.}
     \begin{tabular}{@{}cccccccccccccc@{}}
     \toprule
      & \multicolumn{3}{c}{1ª iteración}   & \multicolumn{2}{c}{$V_1$} & \multicolumn{2}{c}{$V_2$}  & \multicolumn{2}{c}{$V_3$} & \multicolumn{2}{c}{$V_4$} & \multicolumn{2}{c}{$V_5$} \\
@@ -64,9 +66,12 @@ en infinito excepto el origen mismo.}
     $h(5)+w(5,3)$ & {\color[HTML]{9A0000} $0+(-4)$} & {\color[HTML]{9A0000} $<$} & {\color[HTML]{9A0000} $-3$} & 0 & $V_0$ & -2                          & $V_4$                        & {\color[HTML]{9A0000} $-4$} & {\color[HTML]{9A0000} $V_5$}        & 0 & $V_0$ & 0 & $V_0$ \\
     $h(5)+w(5,4)$ & $0+13$                          & $>$                        & 0                           & 0 & $V_0$ & -2                          & $V_4$                        & -4                          & $V_5$                               & 0 & $V_0$ & 0 & $V_0$ \\ \bottomrule
     \end{tabular}
+    \label{Tab:EjFord1}
 \end{table}
 
 \begin{table}[H]
+    \centering
+    \caption{Segunda iteración de Bellman-Ford en el algoritmo de Johnson. No hay cambios.}
     \begin{tabular}{@{}cccccccccccccccccc@{}}
     \toprule
      & \multicolumn{3}{c}{2ª iteración} & \\
@@ -82,5 +87,7 @@ en infinito excepto el origen mismo.}
     $h(5)+w(5,3)$ & $0+(-4)$  & $>$ & $-4$   & Sin cambios                  \\
     $h(5)+w(5,4)$ & $0+13$    & $>$ & $0$    & Sin cambios                  \\ \bottomrule
     \end{tabular}
+    \label{Tab:EjFord2}
 \end{table}
+
 \end{document}
