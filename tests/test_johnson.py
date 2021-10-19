@@ -122,3 +122,23 @@ class TestJohnson(unittest.TestCase):
         self.assertEqual(johnson.matriz[grafo.idDeNodoAlias("D")], [-5,1,-5,0,-2])
         self.assertEqual(johnson.matriz[grafo.idDeNodoAlias("E")], [-3,3,-3,2, 0])
 
+    def test_cormen(self):
+        """Ejemplo tomado de Cormen et al. «Intorduction to Algorithms», 3ª ed."""
+        grafo = GrafoSimple()
+        grafo.insertarArcoConAlias("1","2", 3)
+        grafo.insertarArcoConAlias("1","3", 8)
+        grafo.insertarArcoConAlias("2","4", 1)
+        grafo.insertarArcoConAlias("2","5", 7)
+        grafo.insertarArcoConAlias("1","5",-4)
+        grafo.insertarArcoConAlias("3","2", 4)
+        grafo.insertarArcoConAlias("4","1", 2)
+        grafo.insertarArcoConAlias("4","3",-5)
+        grafo.insertarArcoConAlias("5","4", 6)
+
+        johnson = Johnson(grafo)
+        self.assertEqual(johnson.matriz[grafo.idDeNodoAlias("1")], [0, 1,-3,2,-4])
+        self.assertEqual(johnson.matriz[grafo.idDeNodoAlias("2")], [3, 0,-4,1,-1])
+        self.assertEqual(johnson.matriz[grafo.idDeNodoAlias("3")], [7, 4, 0,5, 3])
+        self.assertEqual(johnson.matriz[grafo.idDeNodoAlias("4")], [2,-1,-5,0,-2])
+        self.assertEqual(johnson.matriz[grafo.idDeNodoAlias("5")], [8, 5, 1,6, 0])
+
