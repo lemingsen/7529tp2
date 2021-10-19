@@ -89,3 +89,9 @@ class TestBellmanFordCero(unittest.TestCase):
         self.assertEqual(distancias[grafo.idDeNodoAlias("3")], -4)
         self.assertEqual(distancias[grafo.idDeNodoAlias("4")],  0)
         self.assertEqual(distancias[grafo.idDeNodoAlias("5")],  0)
+
+    def test_ciclo_negativo_2_nodos(self):
+        grafo = GrafoSimple()
+        grafo.insertarArcoConAlias("1","2", -2)
+        grafo.insertarArcoConAlias("2","1", 1)
+        self.assertEqual(False, BellmanFordConCeroAgregado(grafo).distancias)
