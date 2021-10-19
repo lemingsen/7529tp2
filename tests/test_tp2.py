@@ -4,13 +4,13 @@ import os
 import subprocess
 import sys
 import unittest
+from math import inf
 
 class TestTP2(unittest.TestCase):
+
+    ################################ AUXILIARES ################################
     def pathArchivo(self, rutaRelativa):
         return os.path.realpath(os.path.join(os.path.dirname(__file__), rutaRelativa))
-
-    def setUp(self):
-        self._python = "python"
 
     def ejecutar(self,argumentos,guardar=True,charset='windows-1252'):
         args = [sys.executable, "-m", "src.tp2",*argumentos]
@@ -33,6 +33,16 @@ class TestTP2(unittest.TestCase):
                     self._ultima = ultima
                 yield ultima
 
+    def fnMatchFilaYNombre(self,fila, nombre):
+        """Devuelve una función que verifica si el parámetro coincide con
+        el nombre (que también es re) y los valores de fila dados."""
+        patternNom  = r"\s*" + nombre + r":\s*"
+        patternFila = (r"\s+").join(map(str,fila))
+        pattern = patternNom+patternFila
+        def fn(txt):
+            return re.match(pattern, txt)
+        return fn
+        
     def lineaCumple(self, lineas, fnTextoEnLinea, verbose=True):
         cumple = any(fnTextoEnLinea(linea) for linea in lineas)
         if verbose and not cumple:
@@ -42,6 +52,11 @@ class TestTP2(unittest.TestCase):
                 print("Última: ", self._primera)
         return cumple
 
+    def setUp(self):
+        self._python = "python"
+
+
+    ################################ TESTS ################################
     def test_sin_argumentos(self):
         out = self.ejecutar([])
 
@@ -61,29 +76,29 @@ class TestTP2(unittest.TestCase):
         rutaArchivo = self.pathArchivo("entradas/test_AB10.txt")
         out = self.ejecutar([rutaArchivo])
         self.assertTrue(self.lineaCumple(out, lambda txt: "recomendada: A" in txt))
-        self.assertTrue(self.lineaCumple(out, lambda txt: re.match(r"\s*A:\s*0\s+10", txt) ))
-        self.assertTrue(self.lineaCumple(out, lambda txt: re.match(r"\s*B:\s*inf\s+0", txt) ))
+        self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([0,10],"A")))
+        self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([inf,0],"B")))
         
     def test_BA5_sin_retorno(self):
         rutaArchivo = self.pathArchivo("entradas/test_BA5_sin_retorno.txt")
         out = self.ejecutar([rutaArchivo])
         self.assertTrue(self.lineaCumple(out, lambda txt: "recomendada: B" in txt))
-        self.assertTrue(self.lineaCumple(out, lambda txt: re.match(r"\s*B:\s*0\s+5", txt) ))
-        self.assertTrue(self.lineaCumple(out, lambda txt: re.match(r"\s*A:\s*inf\s+0", txt) ))
+        self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([0,5],"B")))
+        self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([inf,0],"A")))
 
     def test_BA_menos5(self):
         rutaArchivo = self.pathArchivo("entradas/test_BA_menos5.txt")
         out = self.ejecutar([rutaArchivo])
         self.assertTrue(self.lineaCumple(out, lambda txt: "recomendada: B" in txt))
-        self.assertTrue(self.lineaCumple(out, lambda txt: re.match(r"\s*B:\s*0\s+\-5", txt) ))
-        self.assertTrue(self.lineaCumple(out, lambda txt: re.match(r"\s*A:\s*inf\s+0", txt) ))
+        self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([0,-5],"B")))
+        self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([inf,0],"A")))
 
     def test_3arcos(self):
         rutaArchivo = self.pathArchivo("entradas/test_3arcos.txt")
         out = self.ejecutar([rutaArchivo])
         self.assertTrue(self.lineaCumple(out, lambda txt: "recomendada: A" in txt))
-        self.assertTrue(self.lineaCumple(out, lambda txt: re.match(r"\s*A:\s*0\s+54\s+-3\s+62", txt) ))
-        self.assertTrue(self.lineaCumple(out, lambda txt: re.match(r"\s*B:\s*inf\s+0\s+inf\s+8", txt) ))
-        self.assertTrue(self.lineaCumple(out, lambda txt: re.match(r"\s*D:\s*inf\s+inf\s+0\s+inf", txt) ))
-        self.assertTrue(self.lineaCumple(out, lambda txt: re.match(r"\s*C:\s*inf\s+inf\s+inf\s+0", txt) ))
-        
+        self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([0,54,-3,62],"A")))
+        self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([inf,0,inf,8],"B")))
+        self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([inf,inf,0,inf],"D")))
+        self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([inf,inf,inf,0],"C")))
+
