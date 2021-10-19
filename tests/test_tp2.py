@@ -132,3 +132,11 @@ class TestTP2(unittest.TestCase):
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([2,0,0,0,2],"3")))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([2,0,0,0,2],"4")))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([4,2,2,2,0],"5")))
+
+    def test_ciclo_positivo(self):
+        rutaArchivo = self.pathArchivo("entradas/test_ciclo_positivo.txt")
+        out = self.ejecutar([rutaArchivo])
+        self.assertTrue(self.lineaCumple(out, lambda txt: "recomendada: A" in txt))
+        self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([0,-5,-15],"A")))
+        self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([10,0,-10],"B")))
+        self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([20,15,0],"C")))
