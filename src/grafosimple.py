@@ -38,4 +38,5 @@ class GrafoSimple:
             raise Exception("El id de origen del nodo no existe")
         return (arco for arco in self._arcosDesdeOrigen[idOrigen])
 
-
+    def arcos(self):
+        return []
