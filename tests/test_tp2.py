@@ -186,6 +186,6 @@ class TestTP2(unittest.TestCase):
         #self.assertTrue(self.lineaCumple(out, lambda txt: "recomendada: ?" in txt))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([  0,  2,inf,inf,  0],"A")))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([ -1,  0,inf,inf, -1],"B")))
-        self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([inf,inf,  0,-10,-30],"C")))
+        self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([inf,inf,  0,  1,-19],"C")))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([inf,inf,inf,  0,-20],"D")))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([inf,inf,inf,inf,  0],"E")))
