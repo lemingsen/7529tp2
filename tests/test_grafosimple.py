@@ -19,5 +19,10 @@ class TestGrafoSimple(unittest.TestCase):
         self.assertEqual(grafo.idDeNodoAlias("A"),0)
         self.assertEqual(grafo.idDeNodoAlias("B"),1)
 
+    def test_idDeNodoAliasNoExistente(self):
+        grafo = GrafoSimple()
+        self.assertRaises(Exception,grafo.idDeNodoAlias,"A")
+        self.assertEqual(grafo.idDeNodoAlias("A",crear=True),0)
+
 if __name__ == '__main__':
     unittest.main()
