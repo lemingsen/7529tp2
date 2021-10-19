@@ -37,3 +37,10 @@ class TestCriterio(unittest.TestCase):
         variosDe3 = [ [6,inf,2], [inf,inf,0], [3,5,7], [inf,inf,inf] ]
         self.assertEqual(Criterio(variosDe3).analisis, [(1,4),(2,0),(0,5),(3,inf)])
 
+    def test_mejorCosto(self):
+        self.assertEqual(Criterio([ [inf,inf], [inf,inf] ]).mejorCosto, inf)
+        self.assertEqual(Criterio([ [inf,inf], [inf,  9] ]).mejorCosto, 9)
+        self.assertEqual(Criterio([ [  9,inf], [inf,inf] ]).mejorCosto, 9)
+        self.assertEqual(Criterio([ [ -6,inf], [inf,  5] ]).mejorCosto, -6)
+        self.assertEqual(Criterio([ [  1,  5], [  2,  2] ]).mejorCosto, 2)
+

@@ -5,6 +5,7 @@ class Criterio:
         if (not matriz) or (0 == len(matriz)) or (not matriz[0]) or (0 == len(matriz[0])):
             raise Exception("El formato de la matriz no es corrrecto")
         self.analisis = list(map(Criterio.analizar,matriz))
+        self.mejorCosto = min(map(lambda an: an[1], self.analisis))
         self.mejores = [0]
 
 
