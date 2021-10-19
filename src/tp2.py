@@ -35,8 +35,13 @@ class TP2:
             self.johnson = Johnson(lector.grafo)
             self.matriz = self.johnson.matriz
             self.grafo = lector.grafo
-            self.ids = [0]
+            # Calcular recomendación
+            self.sumas = list(map(sum,self.matriz))
+            self.sumaMin = min(self.sumas)
+            self.ids = [id for id in range(lector.grafo.cantidadNodos()) if self.sumas[id] == self.sumaMin]
+            # Alias de recomendacioens
             self.alias = list(map(lambda id: lector.grafo.alias(id=id), self.ids))
+
 
     def imprimir(self):
         texto = "Ubicación recomendada" if 1==len(self.ids) else "Ubicaciones recomendadas"
