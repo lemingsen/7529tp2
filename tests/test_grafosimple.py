@@ -22,6 +22,11 @@ class TestGrafoSimple(unittest.TestCase):
         self.assertEqual(grafo.idDeNodoAlias("A"),0)
         self.assertEqual(grafo.idDeNodoAlias("B"),1)
 
+    def test_AB10_arcos(self):
+        grafo = GrafoSimple()
+        grafo.insertarArcoConAlias("A","B",10)
+        self.assertEqual(list(grafo.arcos()),[(0,1,10)])
+
     def test_idDeNodoAliasNoExistente(self):
         grafo = GrafoSimple()
         self.assertRaises(Exception,grafo.idDeNodoAlias,"A")
