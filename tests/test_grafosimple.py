@@ -49,5 +49,16 @@ class TestGrafoSimple(unittest.TestCase):
         self.assertEqual(list(grafo.arcoDesdeNodoId(0)), [(1,5)])
         self.assertEqual(list(grafo.arcoDesdeNodoId(1)), [])
 
+    def test_AB9BA5(self):
+        grafo = GrafoSimple()
+        grafo.insertarArcoConAlias("A","B",9)
+        grafo.insertarArcoConAlias("B","A",5)
+        self.assertEqual(2,grafo.cantidadNodos())
+        self.assertEqual(2,grafo.cantidadArcos())
+        self.assertEqual(grafo.idDeNodoAlias("A"),0)
+        self.assertEqual(grafo.idDeNodoAlias("B"),1)
+        self.assertEqual(list(grafo.arcoDesdeNodoId(0)), [(1,9)])
+        self.assertEqual(list(grafo.arcoDesdeNodoId(1)), [(0,5)])
+
 if __name__ == '__main__':
     unittest.main()
