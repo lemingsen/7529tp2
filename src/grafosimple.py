@@ -45,6 +45,6 @@ class GrafoSimple:
 
     def modificarPesos(self,fnW_WUV):
         self._arcosDesdeOrigen = [
-                [(hasta,0) for (hasta,peso) in self._arcosDesdeOrigen[desde]]
-                for desde in range(self.cantidadNodos()) ]
+                [  (v, fnW_WUV(w,u,v))  for (v,w) in self._arcosDesdeOrigen[u] ]
+                for u in range(self.cantidadNodos()) ]
                 
