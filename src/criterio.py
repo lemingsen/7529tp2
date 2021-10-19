@@ -1,9 +1,12 @@
 from math import inf
 
+class CriterioError(Exception):
+    pass
+
 class Criterio:
     def __init__(self, matriz):
         if (not matriz) or (0 == len(matriz)) or (not matriz[0]) or (0 == len(matriz[0])):
-            raise Exception("El formato de la matriz no es corrrecto")
+            raise CriterioError("El formato de la matriz no es corrrecto")
         self.analisis = list(map(Criterio.analizar, matriz))
         ids = range(len(matriz))
 
