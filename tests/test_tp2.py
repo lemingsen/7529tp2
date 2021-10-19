@@ -1,4 +1,5 @@
 import io
+import re
 import os
 import subprocess
 import sys
@@ -60,3 +61,8 @@ class TestTP2(unittest.TestCase):
         rutaArchivo = self.pathArchivo("entradas/test_AB10.txt")
         out = self.ejecutar([rutaArchivo])
         self.assertTrue(self.lineaCumple(out, lambda txt: "recomendada: A" in txt))
+        self.assertTrue(self.lineaCumple(out, lambda txt: txt.startswith("A: ") ))
+        re.match(r"\s*A:\s*0\s+10", self._ultima)
+        self.assertTrue(self.lineaCumple(out, lambda txt: txt.startswith("B: ") ))
+        re.match(r"\s*B:\s*inf\s+0", self._ultima)
+        
