@@ -50,3 +50,13 @@ class TestTP2(unittest.TestCase):
         rutaArchivo = self.pathArchivo("entradas/nombre_de_archivo_inexistente.txt")
         out = self.ejecutar([rutaArchivo])
         self.assertTrue(self.lineaCumple(out, lambda txt: ("archivo" in txt) and ("inexistente" in txt)))
+
+    def test_vacio(self):
+        rutaArchivo = self.pathArchivo("entradas/archivo_vacio.txt")
+        out = self.ejecutar([rutaArchivo])
+        self.assertTrue(self.lineaCumple(out, lambda txt: "no contiene" in txt))
+
+    def test_AB10(self):
+        rutaArchivo = self.pathArchivo("entradas/test_AB10.txt")
+        out = self.ejecutar([rutaArchivo])
+        self.assertTrue(self.lineaCumple(out, lambda txt: "recomendada: A" in txt))
