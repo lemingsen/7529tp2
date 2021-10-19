@@ -70,4 +70,20 @@ class TestTP2(unittest.TestCase):
         self.assertTrue(self.lineaCumple(out, lambda txt: "recomendada: B" in txt))
         self.assertTrue(self.lineaCumple(out, lambda txt: re.match(r"\s*B:\s*0\s+5", txt) ))
         self.assertTrue(self.lineaCumple(out, lambda txt: re.match(r"\s*A:\s*inf\s+0", txt) ))
+
+    def test_BA_menos5(self):
+        rutaArchivo = self.pathArchivo("entradas/test_BA_menos5.txt")
+        out = self.ejecutar([rutaArchivo])
+        self.assertTrue(self.lineaCumple(out, lambda txt: "recomendada: B" in txt))
+        self.assertTrue(self.lineaCumple(out, lambda txt: re.match(r"\s*B:\s*0\s+\-5", txt) ))
+        self.assertTrue(self.lineaCumple(out, lambda txt: re.match(r"\s*A:\s*inf\s+0", txt) ))
+
+    def test_3arcos(self):
+        rutaArchivo = self.pathArchivo("entradas/test_3arcos.txt")
+        out = self.ejecutar([rutaArchivo])
+        self.assertTrue(self.lineaCumple(out, lambda txt: "recomendada: A" in txt))
+        self.assertTrue(self.lineaCumple(out, lambda txt: re.match(r"\s*A:\s*0\s+54\s+-3\s+62", txt) ))
+        self.assertTrue(self.lineaCumple(out, lambda txt: re.match(r"\s*B:\s*inf\s+0\s+inf\s+8", txt) ))
+        self.assertTrue(self.lineaCumple(out, lambda txt: re.match(r"\s*D:\s*inf\s+inf\s+0\s+inf", txt) ))
+        self.assertTrue(self.lineaCumple(out, lambda txt: re.match(r"\s*C:\s*inf\s+inf\s+inf\s+0", txt) ))
         
