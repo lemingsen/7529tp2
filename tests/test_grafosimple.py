@@ -24,5 +24,13 @@ class TestGrafoSimple(unittest.TestCase):
         self.assertRaises(Exception,grafo.idDeNodoAlias,"A")
         self.assertEqual(grafo.idDeNodoAlias("A",crear=True),0)
 
+    def test_AB10_adyctentes(self):
+        grafo = GrafoSimple()
+        grafo.insertarArcoConAlias("A","B",10)
+        self.assertEqual(grafo.arcoDesdeNodoId(0), [(1,10)])
+        self.assertEqual(grafo.arcoDesdeNodoId(1), [])
+        self.assertRaises(Exception, grafo.arcoDesdeNodoId, 2)
+        self.assertRaises(Exception, grafo.arcoDesdeNodoId, -1)
+
 if __name__ == '__main__':
     unittest.main()
