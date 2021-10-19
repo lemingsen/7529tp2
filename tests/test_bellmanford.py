@@ -12,3 +12,8 @@ class TestBellmanFordCero(unittest.TestCase):
         grafo = GrafoSimple()
         grafo.insertarArcoConAlias("A","B",5)
         self.assertEqual(BellmanFordConCeroAgregado(grafo).distancias, [0, 0])
+
+    def testAB_menos2(self):
+        grafo = GrafoSimple()
+        grafo.insertarArcoConAlias("A","B",-2)
+        self.assertEqual(BellmanFordConCeroAgregado(grafo).distancias, [0, -2])
