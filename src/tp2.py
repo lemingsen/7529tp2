@@ -36,14 +36,7 @@ class TP2:
             self.matriz = self.johnson.matriz
             self.grafo = lector.grafo
             # Calcular recomendación
-            self.sumas = list(map(sum,self.matriz))
-            self.sumaMin = min(self.sumas)
-            self.ids = [id for id in range(lector.grafo.cantidadNodos()) if self.sumas[id] == self.sumaMin]
             self.criterio = Criterio(self.matriz)
-
-            # Alias de recomendacioens
-            self.alias = list(map(lambda id: lector.grafo.alias(id=id), self.ids))
-
 
     def imprimir(self):
         texto = self.textoRecomendacion()
@@ -55,9 +48,20 @@ class TP2:
             celdas = "\t".join(valores)
             print(nombreFila+":\t"+celdas)
 
+    def textoMejores(self,prefijo,mejores):
+        valores = map(self.grafo.alias, mejores)
+        return prefijo + ( ", ".join(valores))
+
     def textoRecomendacion(self):
-        texto = "Ubicación recomendada" if 1==len(self.ids) else "Ubicaciones recomendadas"
-        texto += ": " + ", ".join(self.alias)
+        singular = (None is not self.criterio.mejores) and (1 == len(self.criterio.mejores))
+        texto = ("Ubicación recomendada" if singular else "Ubicaciones recomendadas") + ":"
+        if (None is self.criterio.mejores):
+            texto += self.textoMejores("\n * Por costo promedio:\t", self.criterio.mejoresCosto)
+            texto += self.textoMejores("\n * Por nº de ciudades:\t", self.criterio.mejoresLimite)
+        else:
+            textosMejores = list(map(lambda id: self.grafo.alias(id=id), self.criterio.mejores))
+            texto += "\t" + ( ", ".join(textosMejores) )
+        texto +="\n"
         return texto
 
     def imprimirAyuda(self):
