@@ -13,7 +13,10 @@ class TestBellmanFordCero(unittest.TestCase):
         grafo.insertarArcoConAlias("A","B",5)
         self.assertEqual(BellmanFordConCeroAgregado(grafo).distancias, [0, 0])
 
-    def testAB_menos2(self):
+    def test_ciclo_positivo(self):
         grafo = GrafoSimple()
-        grafo.insertarArcoConAlias("A","B",-2)
-        self.assertEqual(BellmanFordConCeroAgregado(grafo).distancias, [0, -2])
+        grafo.insertarArcoConAlias("A","B",-5)
+        grafo.insertarArcoConAlias("B","C",-10)
+        grafo.insertarArcoConAlias("C","A",20)
+        self.assertEqual(BellmanFordConCeroAgregado(grafo).distancias, [0, -5, -15])
+
