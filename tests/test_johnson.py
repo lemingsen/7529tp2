@@ -81,3 +81,26 @@ class TestJohnson(unittest.TestCase):
         self.assertEqual(johnson.matriz[grafo.idDeNodoAlias("3")], [2,0,0,0,2])
         self.assertEqual(johnson.matriz[grafo.idDeNodoAlias("4")], [2,0,0,0,2])
         self.assertEqual(johnson.matriz[grafo.idDeNodoAlias("5")], [4,2,2,2,0])
+
+    def test_ciclo_positivo(self):
+        grafo = GrafoSimple()
+        grafo.insertarArcoConAlias("A","B",-5)
+        grafo.insertarArcoConAlias("B","C",-10)
+        grafo.insertarArcoConAlias("C","A",20)
+        johnson = Johnson(grafo)
+        self.assertEqual(johnson.matriz[grafo.idDeNodoAlias("A")], [0,-5,-15])
+        self.assertEqual(johnson.matriz[grafo.idDeNodoAlias("B")], [10,0,-10])
+        self.assertEqual(johnson.matriz[grafo.idDeNodoAlias("C")], [20,15,0])
+
+    def test_4nodos_con_negativos(self):
+        grafo = GrafoSimple()
+        grafo.insertarArcoConAlias("A","B",-2)
+        grafo.insertarArcoConAlias("C","D",-2)
+        grafo.insertarArcoConAlias("A","D",-1)
+        grafo.insertarArcoConAlias("B","C",5)
+        grafo.insertarArcoConAlias("D","B",-3)
+        johnson = Johnson(grafo)
+        self.assertEqual(johnson.matriz[grafo.idDeNodoAlias("A")], [0,-4,1,-1])
+        self.assertEqual(johnson.matriz[grafo.idDeNodoAlias("B")], [math.inf,0,5,3])
+        self.assertEqual(johnson.matriz[grafo.idDeNodoAlias("C")], [math.inf,-5,0,-2])
+        self.assertEqual(johnson.matriz[grafo.idDeNodoAlias("D")], [math.inf,-3,2,0])
