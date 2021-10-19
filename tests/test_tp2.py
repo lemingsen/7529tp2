@@ -72,6 +72,11 @@ class TestTP2(unittest.TestCase):
         out = self.ejecutar([rutaArchivo])
         self.assertTrue(self.lineaCumple(out, lambda txt: "no contiene" in txt))
 
+    def test_cantidad_incorrecta_campos(self):
+        rutaArchivo = self.pathArchivo("entradas/test_cantidad_incorrecta_campos.txt")
+        out = self.ejecutar([rutaArchivo])
+        self.assertTrue(self.lineaCumple(out, lambda txt: ("cantidad" in txt) and ("campos" in txt)))
+
     def test_AB10(self):
         rutaArchivo = self.pathArchivo("entradas/test_AB10.txt")
         out = self.ejecutar([rutaArchivo])

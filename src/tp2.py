@@ -19,13 +19,11 @@ class TP2:
 
         except Exception as ex:
             if isinstance(ex, FileNotFoundError):
-                print("El archivo es inexistente o inaccesible.")
+                print("El archivo es inexistente o inaccesible: " + str(ex))
             elif isinstance(ex, TP2Error):
                 print(str(ex))
-                return
             else:
-                print("Se produjo un error inesperado.\n")
-            print("Error original:"+str(ex),file=sys.stderr)
+                print("Se produjo un error inesperado: \n"+str(ex))
             return
 
     def procesar(self,archivo):
