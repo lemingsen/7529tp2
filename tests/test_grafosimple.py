@@ -7,5 +7,11 @@ class TestGrafoSimple(unittest.TestCase):
         self.assertEqual(0,grafo.cantidadNodos())
         self.assertEqual(0,grafo.cantidadArcos())
 
+    def test_AB10_cantidad(self):
+        grafo = GrafoSimple()
+        grafo.insertarArcoConAlias("A","B",10)
+        self.assertEqual(2,grafo.cantidadNodos())
+        self.assertEqual(1,grafo.cantidadArcos())
+
 if __name__ == '__main__':
     unittest.main()
