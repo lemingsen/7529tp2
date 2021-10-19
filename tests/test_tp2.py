@@ -64,4 +64,10 @@ class TestTP2(unittest.TestCase):
         self.assertTrue(self.lineaCumple(out, lambda txt: re.match(r"\s*A:\s*0\s+10", txt) ))
         self.assertTrue(self.lineaCumple(out, lambda txt: re.match(r"\s*B:\s*inf\s+0", txt) ))
         
+    def test_BA5_sin_retorno(self):
+        rutaArchivo = self.pathArchivo("entradas/test_BA5_sin_retorno.txt")
+        out = self.ejecutar([rutaArchivo])
+        self.assertTrue(self.lineaCumple(out, lambda txt: "recomendada: B" in txt))
+        self.assertTrue(self.lineaCumple(out, lambda txt: re.match(r"\s*B:\s*0\s+5", txt) ))
+        self.assertTrue(self.lineaCumple(out, lambda txt: re.match(r"\s*A:\s*inf\s+0", txt) ))
         
