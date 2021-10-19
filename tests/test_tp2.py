@@ -159,3 +159,14 @@ class TestTP2(unittest.TestCase):
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([ 0,6, 0,5, 3],"C")))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([-5,1,-5,0,-2],"D")))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([-3,3,-3,2, 0],"E")))
+
+    def test_cormen(self):
+        """Ejemplo tomado de Cormen et al. «Intorduction to Algorithms», 3ª ed."""
+        rutaArchivo = self.pathArchivo("entradas/test_cormen.txt")
+        out = self.ejecutar([rutaArchivo])
+        self.assertTrue(self.lineaCumple(out, lambda txt: "recomendada: 4" in txt))
+        self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([0, 1,-3,2,-4], "1")))
+        self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([3, 0,-4,1,-1], "2")))
+        self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([7, 4, 0,5, 3], "3")))
+        self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([2,-1,-5,0,-2], "4")))
+        self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([8, 5, 1,6, 0], "5")))
