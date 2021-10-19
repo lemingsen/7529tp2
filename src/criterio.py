@@ -15,7 +15,7 @@ class Criterio:
         self.mejorLimite = min(limite)
         self.mejoresLimite = [id for id in ids if limite[id] == self.mejorLimite]
 
-        self.mejores = [0]
+        self.mejores = self._mejores()
 
 
     @classmethod
@@ -35,3 +35,6 @@ class Criterio:
         
         return (infs,suma)
 
+    def _mejores(self):
+        ambos = list(set(self.mejoresCosto) & set(self.mejoresLimite))
+        return ambos if len(ambos) else None

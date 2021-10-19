@@ -66,3 +66,17 @@ class TestCriterio(unittest.TestCase):
         self.assertEqual(Criterio([ [  1,  5], [  2,  2] ]).mejoresLimite, [0,1])
 
 
+    def test_mejores(self):
+        self.assertEqual(Criterio([ [inf,inf], [inf,inf] ]).mejores, [0,1])
+        self.assertEqual(Criterio([ [inf,inf], [inf,  9] ]).mejores, [1])
+        self.assertEqual(Criterio([ [ -6,inf], [inf,  5] ]).mejores, [0])
+        self.assertEqual(Criterio([ [  9,inf], [inf,inf] ]).mejores, [0])
+        self.assertEqual(Criterio([ [  1,  5], [  2,  2] ]).mejores, [1])
+
+
+    def test_6i2_ii0(self):
+        self.assertEqual(Criterio([ [6,inf,2], [inf,inf,0] ]).mejorCosto,    0)
+        self.assertEqual(Criterio([ [6,inf,2], [inf,inf,0] ]).mejoresCosto,  [1])
+        self.assertEqual(Criterio([ [6,inf,2], [inf,inf,0] ]).mejorLimite,   1)
+        self.assertEqual(Criterio([ [6,inf,2], [inf,inf,0] ]).mejoresLimite, [0])
+        self.assertEqual(Criterio([ [6,inf,2], [inf,inf,0] ]).mejores,       None)
