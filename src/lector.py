@@ -1,8 +1,12 @@
 from src.grafosimple import GrafoSimple
 
 class Lector:
-    def __init__(self, nombreArchivo):
+    def __init__(self, nombreArchivo,verbose=False):
+        self._verbose = verbose
         with open(nombreArchivo, "r") as archivo:
+            if self._verbose:
+                print("\nArchivo: ",nombreArchivo)
+
             self.grafo = GrafoSimple()
             lineas = self._lineas(archivo)
             entradas = (self._parsear(linea) for linea in lineas if linea)
@@ -12,15 +16,26 @@ class Lector:
 
     def _lineas(self,archivo):
         while True:
-            linea = archivo.readline()
-            linea = linea.strip() if linea else None
+            leido = archivo.readline()
+            if not leido:
+                return
+            linea = leido.strip() if leido else None
             if linea:
+                if self._verbose:
+                    print(" Línea: ",linea)
                 yield linea
             else:
-                return
+                if self._verbose:
+                    print(" Ignorando leído:", leido)
 
     def _parsear(self,linea):
         campos = linea.split(',')
         if (not campos) or (0 == len(campos)):
+            if self._verbose:
+                print("  Ignorando campos: ",linea)
             return None
-        return list(map(lambda campo: campo.strip(), campos))
+        entrada = list(map(lambda campo: campo.strip(), campos))
+        if self._verbose:
+            print("Entrada: ",entrada)
+
+        return entrada
