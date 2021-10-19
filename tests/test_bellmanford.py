@@ -60,7 +60,7 @@ class TestBellmanFordCero(unittest.TestCase):
         grafo.insertarArcoConAlias("3","2", 4)
         grafo.insertarArcoConAlias("4","1", 2)
         grafo.insertarArcoConAlias("4","3",-5)
-        grafo.insertarArcoConAlias("5","4", 4)
+        grafo.insertarArcoConAlias("5","4", 6)
 
         distancias = BellmanFordConCeroAgregado(grafo).distancias
 
