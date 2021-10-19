@@ -175,3 +175,17 @@ class TestTP2(unittest.TestCase):
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([7, 4, 0,5, 3], "3")))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([2,-1,-5,0,-2], "4")))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([8, 5, 1,6, 0], "5")))
+
+
+    def test_criterio_dificil(self):
+        """Diseñado intencionalmente para dilucidar cuál debería ser el criterio
+        de recomendación. 1 caso accede a la mayor cantidad de nodos con costo
+        negativo, y otro accede a un solo nodo pero el costo total es menor."""
+        rutaArchivo = self.pathArchivo("entradas/test_criterio_dificil.txt")
+        out = self.ejecutar([rutaArchivo])
+        #self.assertTrue(self.lineaCumple(out, lambda txt: "recomendada: ?" in txt))
+        self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([  0,  2,inf,inf,  0],"A")))
+        self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([ -1,  0,inf,inf, -1],"B")))
+        self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([inf,inf,  0,-10,-30],"C")))
+        self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([inf,inf,inf,  0,-20],"D")))
+        self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([inf,inf,inf,inf,  0],"E")))

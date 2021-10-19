@@ -1,4 +1,4 @@
-import math
+from math import inf
 import unittest
 
 from src.grafosimple import GrafoSimple
@@ -26,7 +26,7 @@ class TestJohnson(unittest.TestCase):
         johnson = Johnson(grafo)
         self.assertEqual(len(johnson.matriz), 2)
         self.assertEqual(johnson.matriz[0], [0,11])
-        self.assertEqual(johnson.matriz[1], [math.inf,0])
+        self.assertEqual(johnson.matriz[1], [inf,0])
 
     def test_AB6BA7AC1CA2(self):
         grafo = GrafoSimple()
@@ -101,9 +101,9 @@ class TestJohnson(unittest.TestCase):
         grafo.insertarArcoConAlias("D","B",-3)
         johnson = Johnson(grafo)
         self.assertEqual(johnson.matriz[grafo.idDeNodoAlias("A")], [0,-4,1,-1])
-        self.assertEqual(johnson.matriz[grafo.idDeNodoAlias("B")], [math.inf,0,5,3])
-        self.assertEqual(johnson.matriz[grafo.idDeNodoAlias("C")], [math.inf,-5,0,-2])
-        self.assertEqual(johnson.matriz[grafo.idDeNodoAlias("D")], [math.inf,-3,2,0])
+        self.assertEqual(johnson.matriz[grafo.idDeNodoAlias("B")], [inf,0,5,3])
+        self.assertEqual(johnson.matriz[grafo.idDeNodoAlias("C")], [inf,-5,0,-2])
+        self.assertEqual(johnson.matriz[grafo.idDeNodoAlias("D")], [inf,-3,2,0])
 
     def test_5nodos_con_negativos(self):
         grafo = GrafoSimple()
@@ -142,3 +142,24 @@ class TestJohnson(unittest.TestCase):
         self.assertEqual(johnson.matriz[grafo.idDeNodoAlias("4")], [2,-1,-5,0,-2])
         self.assertEqual(johnson.matriz[grafo.idDeNodoAlias("5")], [8, 5, 1,6, 0])
 
+    def test_criterio_dificil(self):
+        """Diseñado intencionalmente para dilucidar cuál debería ser el criterio
+        de recomendación. 1 caso accede a la mayor cantidad de nodos con costo
+        negativo, y otro accede a un solo nodo pero el costo total es menor."""
+
+        grafo = GrafoSimple()
+        grafo.insertarArcoConAlias("A","B", 2)
+        grafo.insertarArcoConAlias("B","A",-1)
+        grafo.insertarArcoConAlias("C","D",-10)
+        grafo.insertarArcoConAlias("A","E", 0)
+        grafo.insertarArcoConAlias("B","E", 0)
+        grafo.insertarArcoConAlias("C","E", 0)
+        grafo.insertarArcoConAlias("D","E",-20)
+
+        johnson = Johnson(grafo)
+        self.assertEqual(johnson.h, [-1, 0, 0, -10, -30])
+        self.assertEqual(johnson.matriz[grafo.idDeNodoAlias("A")], [  0,  2,inf,inf,  0])
+        self.assertEqual(johnson.matriz[grafo.idDeNodoAlias("B")], [ -1,  0,inf,inf, -1])
+        self.assertEqual(johnson.matriz[grafo.idDeNodoAlias("C")], [inf,inf,  0,-10,-30])
+        self.assertEqual(johnson.matriz[grafo.idDeNodoAlias("D")], [inf,inf,inf,  0,-20])
+        self.assertEqual(johnson.matriz[grafo.idDeNodoAlias("E")], [inf,inf,inf,inf,  0])

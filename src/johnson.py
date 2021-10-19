@@ -11,7 +11,8 @@ class Johnson:
             grafo.modificarPesos( lambda w,u,v: w +h[u] -h[v] )
         else:
             h = [0 for i in range(grafo.cantidadNodos())]
-
+        self.h = h
+        
         self.matriz = []
         for u in range(grafo.cantidadNodos()):
             d = Dijkstra(grafo, u).distancias
