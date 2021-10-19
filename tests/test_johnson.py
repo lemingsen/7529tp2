@@ -104,3 +104,21 @@ class TestJohnson(unittest.TestCase):
         self.assertEqual(johnson.matriz[grafo.idDeNodoAlias("B")], [math.inf,0,5,3])
         self.assertEqual(johnson.matriz[grafo.idDeNodoAlias("C")], [math.inf,-5,0,-2])
         self.assertEqual(johnson.matriz[grafo.idDeNodoAlias("D")], [math.inf,-3,2,0])
+
+    def test_5nodos_con_negativos(self):
+        grafo = GrafoSimple()
+        grafo.insertarArcoConAlias("A","B", 6)
+        grafo.insertarArcoConAlias("B","C",-2)
+        grafo.insertarArcoConAlias("C","A", 0)
+        grafo.insertarArcoConAlias("D","E",-2)
+        grafo.insertarArcoConAlias("B","E",-1)
+        grafo.insertarArcoConAlias("C","D", 5)
+        grafo.insertarArcoConAlias("E","C",-3)
+
+        johnson = Johnson(grafo)
+        self.assertEqual(johnson.matriz[grafo.idDeNodoAlias("A")], [ 0,6, 2,7, 5])
+        self.assertEqual(johnson.matriz[grafo.idDeNodoAlias("B")], [-4,0,-4,1,-1])
+        self.assertEqual(johnson.matriz[grafo.idDeNodoAlias("C")], [ 0,6, 0,5, 3])
+        self.assertEqual(johnson.matriz[grafo.idDeNodoAlias("D")], [-5,1,-5,0,-2])
+        self.assertEqual(johnson.matriz[grafo.idDeNodoAlias("E")], [-3,3,-3,2, 0])
+
