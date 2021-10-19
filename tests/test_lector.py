@@ -99,5 +99,67 @@ class TestLector(unittest.TestCase):
         self.assertEqual(grafo.idDeNodoAlias("CHAU"),3)
         self.assertEqual(list(grafo.arcos()),[(0,1,-1), (1,2,-2),(3,2,-3)])
 
+    def test_AB6BA7AC1CA2(self):
+        rutaArchivo = self.pathArchivo("entradas/test_AB6BA7AC1CA2.txt")
+        grafo = Lector(rutaArchivo).grafo
+        self.assertEqual( list(grafo.arcoDesdeNodoId(0)), [ (1,6), (2,1) ])
+        self.assertEqual( list(grafo.arcoDesdeNodoId(1)), [ (0,7) ])
+        self.assertEqual( list(grafo.arcoDesdeNodoId(2)), [ (0,2)])
+
+    def test_ejtp2_pos(self):
+        """Grafo H del TP2 (todos positivos)"""
+        rutaArchivo = self.pathArchivo("entradas/test_ejtp2_pos.txt")
+        grafo = Lector(rutaArchivo).grafo
+        self.assertEqual( list(grafo.arcoDesdeNodoId(0)), [ (1,14), (2, 1) ])
+        self.assertEqual( list(grafo.arcoDesdeNodoId(1)), [ (2, 1), (3,13)  ])
+        self.assertEqual( list(grafo.arcoDesdeNodoId(2)), [ (4,17) ])
+        self.assertEqual( list(grafo.arcoDesdeNodoId(3)), [ (1, 0) ])
+        self.assertEqual( list(grafo.arcoDesdeNodoId(4)), [ (0, 8), (2, 0), (3,13) ])
+
+    def test_cormen_pos(self):
+        """Ejemplo tomado de Cormen et al. «Intorduction to Algorithms», 3ª ed.
+        Corresponde al grafo obtenido luego de aplicar Bellman-Ford."""
+        rutaArchivo = self.pathArchivo("entradas/test_cormen.txt")
+        grafo = Lector(rutaArchivo).grafo
+        self.assertEqual( list(grafo.arcoDesdeNodoId(0)), [ (1,4), (2,13), (4,0) ])
+        self.assertEqual( list(grafo.arcoDesdeNodoId(1)), [ (3,0), (4,10) ])
+        self.assertEqual( list(grafo.arcoDesdeNodoId(2)), [ (1,0) ])
+        self.assertEqual( list(grafo.arcoDesdeNodoId(3)), [ (0,2), (2,0) ])
+        self.assertEqual( list(grafo.arcoDesdeNodoId(4)), [ (3,2) ])
+
+    def test_ciclo_positivo(self):
+        rutaArchivo = self.pathArchivo("entradas/test_ciclo_positivo.txt")
+        grafo = Lector(rutaArchivo).grafo
+        self.assertEqual( list(grafo.arcoDesdeNodoId(0)), [ (1, -5) ])
+        self.assertEqual( list(grafo.arcoDesdeNodoId(1)), [ (2,-10) ])
+        self.assertEqual( list(grafo.arcoDesdeNodoId(2)), [ (0, 20) ])
+
+    def test_4nodos_con_negativos(self):
+        rutaArchivo = self.pathArchivo("entradas/test_4nodos_con_negativos.txt")
+        grafo = Lector(rutaArchivo).grafo
+        self.assertEqual( list(grafo.arcoDesdeNodoId(0)), [ (1,-2), (3,-1) ])
+        self.assertEqual( list(grafo.arcoDesdeNodoId(1)), [ (2,5) ])
+        self.assertEqual( list(grafo.arcoDesdeNodoId(2)), [ (3,-2) ])
+        self.assertEqual( list(grafo.arcoDesdeNodoId(3)), [ (1-3,) ])
+
+    def test_5nodos_con_negativos(self):
+        rutaArchivo = self.pathArchivo("entradas/test_5nodos_con_negativos.txt")
+        grafo = Lector(rutaArchivo).grafo
+        self.assertEqual( list(grafo.arcoDesdeNodoId(0)), [ (1,6) ])
+        self.assertEqual( list(grafo.arcoDesdeNodoId(1)), [ (2,-2), (4,-1) ])
+        self.assertEqual( list(grafo.arcoDesdeNodoId(2)), [ (0,0), (3,5) ])
+        self.assertEqual( list(grafo.arcoDesdeNodoId(3)), [ (4,-2) ])
+        self.assertEqual( list(grafo.arcoDesdeNodoId(4)), [ (2,-3) ])
+
+    def test_cormen(self):
+        """Ejemplo tomado de Cormen et al. «Intorduction to Algorithms», 3ª ed."""
+        rutaArchivo = self.pathArchivo("entradas/test_cormen.txt")
+        grafo = Lector(rutaArchivo).grafo
+        self.assertEqual( list(grafo.arcoDesdeNodoId(0)), [ (1,3), (2,8), (4,-4) ])
+        self.assertEqual( list(grafo.arcoDesdeNodoId(1)), [ (3,1), (4,7) ])
+        self.assertEqual( list(grafo.arcoDesdeNodoId(2)), [ (1,4) ])
+        self.assertEqual( list(grafo.arcoDesdeNodoId(3)), [ (0,2), (2,-5)])
+        self.assertEqual( list(grafo.arcoDesdeNodoId(4)), [ (3,6) ])
+
 if __name__ == '__main__':
     unittest.main()
