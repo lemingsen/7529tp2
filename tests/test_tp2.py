@@ -140,3 +140,12 @@ class TestTP2(unittest.TestCase):
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([0,-5,-15],"A")))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([10,0,-10],"B")))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([20,15,0],"C")))
+
+    def test_4nodos_con_negativos(self):
+        rutaArchivo = self.pathArchivo("entradas/test_4nodos_con_negativos.txt")
+        out = self.ejecutar([rutaArchivo])
+        self.assertTrue(self.lineaCumple(out, lambda txt: "recomendada: A" in txt))
+        self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([0,-4,1,-1],"A")))
+        self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([inf,0,5,3],"B")))
+        self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([inf,-5,0,-2],"C")))
+        self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([inf,-3,2,0],"D")))
