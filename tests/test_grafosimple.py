@@ -14,6 +14,7 @@ class TestGrafoSimple(unittest.TestCase):
         grafo.insertarArcoConAlias("A","B",10)
         self.assertEqual(2,grafo.cantidadNodos())
         self.assertEqual(1,grafo.cantidadArcos())
+        self.assertEqual(1,len(list(grafo.arcos())))
 
     def test_AB10_nodos(self):
         grafo = GrafoSimple()
