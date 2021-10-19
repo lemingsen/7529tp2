@@ -13,6 +13,7 @@ class Criterio:
 
         limite = list(map(lambda an: an[0], self.analisis))
         self.mejorLimite = min(limite)
+        self.mejoresLimite = [id for id in ids if limite[id] == self.mejorLimite]
 
         self.mejores = [0]
 
