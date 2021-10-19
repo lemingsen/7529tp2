@@ -88,5 +88,18 @@ class TestGrafoSimple(unittest.TestCase):
         self.assertEqual(list(grafo.arcoDesdeNodoId(1)), [(0,20)])
         self.assertEqual(list(grafo.arcos()),[(0,1,10),(1,0,20)])
 
+    def test_modificar_pesos_a_0(self):
+        grafo = GrafoSimple()
+        grafo.insertarArcoConAlias("A","B",-2)
+        grafo.insertarArcoConAlias("C","D",-2)
+        grafo.insertarArcoConAlias("A","D",-1)
+        grafo.insertarArcoConAlias("B","C",5)
+        grafo.insertarArcoConAlias("D","B",-3)
+        grafo.modificarPesos( lambda w,u,v: 0 )
+        self.assertEqual(list(grafo.arcoDesdeNodoId(0)), [(1,0), (3,0)])
+        self.assertEqual(list(grafo.arcoDesdeNodoId(1)), [(2,0)])
+        self.assertEqual(list(grafo.arcoDesdeNodoId(2)), [(3,0)])
+        self.assertEqual(list(grafo.arcoDesdeNodoId(3)), [(1,0)])
+
 if __name__ == '__main__':
     unittest.main()
