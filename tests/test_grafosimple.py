@@ -114,5 +114,25 @@ class TestGrafoSimple(unittest.TestCase):
         self.assertEqual(list(grafo.arcoDesdeNodoId(2)), [(3,358)])
         self.assertEqual(list(grafo.arcoDesdeNodoId(3)), [(1,417)])
 
+    def test_alias(self):
+        grafo = GrafoSimple()
+        x = object()
+        grafo.insertarArcoConAlias("A","B",-2)
+        grafo.insertarArcoConAlias(-1,3,-1)
+        grafo.insertarArcoConAlias(x,"Un texto largo",0)
+        alias = grafo.alias()
+        self.assertTrue(isinstance(alias, types.GeneratorType))
+        self.assertEqual(list(alias), ["A","B",-1,3,x,"Un texto largo"])
+        self.assertEqual(grafo.alias(id=0),"A")
+        self.assertEqual(grafo.alias(id=1),"B")
+        self.assertEqual(grafo.alias(id=2),-1)
+        self.assertEqual(grafo.alias(id=3),3)
+        self.assertEqual(grafo.alias(id=4),x)
+        self.assertEqual(grafo.alias(id=5),"Un texto largo")
+        with self.assertRaises(Exception) as contexto:
+            grafo.alias(id=6)
+        with self.assertRaises(Exception) as contexto:
+            grafo.alias(id=-1)
+
 if __name__ == '__main__':
     unittest.main()

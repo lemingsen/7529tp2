@@ -47,4 +47,11 @@ class GrafoSimple:
         self._arcosDesdeOrigen = [
                 [  (v, fnW_WUV(w,u,v))  for (v,w) in self._arcosDesdeOrigen[u] ]
                 for u in range(self.cantidadNodos()) ]
-                
+
+    def alias(self,id=None):
+        lista = self._listaAlias
+        if None is id:
+            return (alias for alias in lista)
+        else:
+            return [key for key in lista.keys() if lista[key] == id][0]
+        
