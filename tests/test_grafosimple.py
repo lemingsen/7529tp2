@@ -1,4 +1,5 @@
 import unittest
+import types
 from src.grafosimple import GrafoSimple
 
 class TestGrafoSimple(unittest.TestCase):
@@ -27,10 +28,16 @@ class TestGrafoSimple(unittest.TestCase):
     def test_AB10_adyctentes(self):
         grafo = GrafoSimple()
         grafo.insertarArcoConAlias("A","B",10)
-        self.assertEqual(grafo.arcoDesdeNodoId(0), [(1,10)])
-        self.assertEqual(grafo.arcoDesdeNodoId(1), [])
+        self.assertEqual(list(grafo.arcoDesdeNodoId(0)), [(1,10)])
+        self.assertEqual(list(grafo.arcoDesdeNodoId(1)), [])
         self.assertRaises(Exception, grafo.arcoDesdeNodoId, 2)
         self.assertRaises(Exception, grafo.arcoDesdeNodoId, -1)
+
+    def test_arcoDesdeNodoId_es_generador(self):
+        grafo = GrafoSimple()
+        grafo.insertarArcoConAlias("A","B",10)
+        adyacentes = grafo.arcoDesdeNodoId(0)
+        self.assertTrue(isinstance(adyacentes, types.GeneratorType))
 
 if __name__ == '__main__':
     unittest.main()

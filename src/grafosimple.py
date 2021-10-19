@@ -36,6 +36,6 @@ class GrafoSimple:
     def arcoDesdeNodoId(self, idOrigen):
         if (idOrigen <0) or (idOrigen >= self.cantidadNodos()):
             raise Exception("El id de origen del nodo no existe")
-        return self._arcosDesdeOrigen[idOrigen]
+        return (arco for arco in self._arcosDesdeOrigen[idOrigen])
 
 
