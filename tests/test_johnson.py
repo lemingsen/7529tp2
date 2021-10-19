@@ -61,7 +61,7 @@ class TestJohnson(unittest.TestCase):
         self.assertEqual(johnson.matriz[grafo.idDeNodoAlias("4")], [26, 0,1, 0,18])
         self.assertEqual(johnson.matriz[grafo.idDeNodoAlias("5")], [ 8,13,0,13, 0])
 
-    def test_cormen(self):
+    def test_cormen_pos(self):
         """Ejemplo tomado de Cormen et al. «Intorduction to Algorithms», 3ª ed.
         Corresponde al grafo obtenido luego de aplicar Bellman-Ford."""
         grafo = GrafoSimple()
