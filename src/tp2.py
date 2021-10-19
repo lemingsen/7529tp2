@@ -1,7 +1,8 @@
 import sys
 
-from src.lector import Lector
+from src.criterio import Criterio
 from src.johnson import Johnson
+from src.lector import Lector
 
 class TP2Error(Exception):
     pass
@@ -24,6 +25,7 @@ class TP2:
                 print(str(ex))
             else:
                 print("Se produjo un error inesperado: \n"+str(ex))
+                raise ex
             return
 
     def procesar(self,archivo):
@@ -37,13 +39,14 @@ class TP2:
             self.sumas = list(map(sum,self.matriz))
             self.sumaMin = min(self.sumas)
             self.ids = [id for id in range(lector.grafo.cantidadNodos()) if self.sumas[id] == self.sumaMin]
+            self.criterio = Criterio(self.matriz)
+
             # Alias de recomendacioens
             self.alias = list(map(lambda id: lector.grafo.alias(id=id), self.ids))
 
 
     def imprimir(self):
-        texto = "Ubicación recomendada" if 1==len(self.ids) else "Ubicaciones recomendadas"
-        texto += ": " + ", ".join(self.alias)
+        texto = self.textoRecomendacion()
         cabecera = "\t".join(self.grafo.alias())
         print(texto+"\n\t" + cabecera)
         for id in range(self.grafo.cantidadNodos()):
@@ -51,6 +54,11 @@ class TP2:
             valores = map(lambda x: str(x), self.matriz[id])
             celdas = "\t".join(valores)
             print(nombreFila+":\t"+celdas)
+
+    def textoRecomendacion(self):
+        texto = "Ubicación recomendada" if 1==len(self.ids) else "Ubicaciones recomendadas"
+        texto += ": " + ", ".join(self.alias)
+        return texto
 
     def imprimirAyuda(self):
         margen = "            "
