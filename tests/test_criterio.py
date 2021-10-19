@@ -44,3 +44,10 @@ class TestCriterio(unittest.TestCase):
         self.assertEqual(Criterio([ [ -6,inf], [inf,  5] ]).mejorCosto, -6)
         self.assertEqual(Criterio([ [  1,  5], [  2,  2] ]).mejorCosto, 2)
 
+    def test_mejoresCosto(self):
+        self.assertEqual(Criterio([ [inf,inf], [inf,inf] ]).mejoresCosto, [0,1])
+        self.assertEqual(Criterio([ [inf,inf], [inf,  9] ]).mejoresCosto, [1])
+        self.assertEqual(Criterio([ [  9,inf], [inf,inf] ]).mejoresCosto, [0])
+        self.assertEqual(Criterio([ [ -6,inf], [inf,  5] ]).mejoresCosto, [0])
+        self.assertEqual(Criterio([ [  1,  5], [  2,  2] ]).mejoresCosto, [1])
+
