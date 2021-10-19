@@ -16,8 +16,8 @@ class TestGrafoSimple(unittest.TestCase):
     def test_AB10_nodos(self):
         grafo = GrafoSimple()
         grafo.insertarArcoConAlias("A","B",10)
-        self.assertEqual("A", grafo.aliasDeNodo(0))
-        self.assertEqual("B", grafo.aliasDeNodo(1))
+        self.assertEqual(grafo.idDeNodoAlias("A"),0)
+        self.assertEqual(grafo.idDeNodoAlias("B"),1)
 
 if __name__ == '__main__':
     unittest.main()
