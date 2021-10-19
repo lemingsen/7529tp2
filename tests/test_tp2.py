@@ -109,3 +109,14 @@ class TestTP2(unittest.TestCase):
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([0,6,1],"A")))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([7,0,8],"B")))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([2,8,0],"C")))
+
+    def test_ejtp2_pos(self):
+        """Grafo H del TP2 (todos positivos)"""
+        rutaArchivo = self.pathArchivo("entradas/test_ejtp2_pos.txt")
+        out = self.ejecutar([rutaArchivo])
+        self.assertTrue(self.lineaCumple(out, lambda txt: "recomendada: 5" in txt))
+        self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([ 0,14,1,27,18],"1")))
+        self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([26, 0,1,13,18],"2")))
+        self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([25,30,0,30,17],"3")))
+        self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([26, 0,1, 0,18],"4")))
+        self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([ 8,13,0,13, 0],"5")))
