@@ -8,4 +8,7 @@ class Criterio:
 
     @classmethod
     def analizar(cls, distancias):
-        return (1,inf)
+        infs = sum([1 if inf == distancia else 0 for distancia in distancias])
+        suma = 0
+        
+        return (infs,suma if infs<len(distancias) else inf )
