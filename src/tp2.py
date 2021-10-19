@@ -1,6 +1,7 @@
 import sys
 
 from src.lector import Lector
+from src.johnson import Johnson
 
 class TP2Error(Exception):
     pass
@@ -31,15 +32,22 @@ class TP2:
             lector = Lector(archivo)
             if lector.grafo.cantidadArcos()<1:
                 raise TP2Error("El achivo no contiene arcos (aristas): "+archivo+"\n")
+            self.johnson = Johnson(lector.grafo)
+            self.matriz = self.johnson.matriz
+            self.grafo = lector.grafo
             self.ids = [0]
             self.alias = list(map(lambda id: lector.grafo.alias(id=id), self.ids))
 
     def imprimir(self):
         texto = "Ubicación recomendada" if 1==len(self.ids) else "Ubicaciones recomendadas"
         texto += ": " + ", ".join(self.alias)
-        print(texto+"\n")
-        print("A: 0 10")
-        print("B: inf 0")
+        cabecera = "\t".join(self.grafo.alias())
+        print(texto+"\n\t" + cabecera)
+        for id in range(self.grafo.cantidadNodos()):
+            nombreFila = self.grafo.alias(id=id)
+            valores = map(lambda x: str(x), self.matriz[id])
+            celdas = "\t".join(valores)
+            print(nombreFila+":\t"+celdas)
 
     def imprimirAyuda(self):
         margen = "            "
