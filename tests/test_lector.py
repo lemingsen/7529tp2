@@ -162,5 +162,14 @@ class TestLector(unittest.TestCase):
         self.assertEqual( list(grafo.arcoDesdeNodoId(3)), [ (0,2), (2,-5)])
         self.assertEqual( list(grafo.arcoDesdeNodoId(4)), [ (3,6) ])
 
+    def test_cantidad_incorrecta_campos(self):
+        rutaArchivo = self.pathArchivo("entradas/test_cantidad_incorrecta_campos.txt")
+
+        with self.assertRaises(Exception) as contexto:
+            Lector(rutaArchivo)
+
+        self.assertIn('cantidad', str(contexto.exception))
+        self.assertIn('campos', str(contexto.exception))
+
 if __name__ == '__main__':
     unittest.main()
