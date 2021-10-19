@@ -6,17 +6,47 @@ import unittest
 
 class TestTP2(unittest.TestCase):
     def pathArchivo(self, rutaRelativa):
-        return os.path.join(os.path.dirname(__file__), rutaRelativa)
+        return os.path.realpath(os.path.join(os.path.dirname(__file__), rutaRelativa))
 
     def setUp(self):
         self._python = "python"
 
-    def ejecutar(self,argumentos):
-        args = [sys.executable, self.pathArchivo("../src/tp2.py"),*argumentos]
-        with subprocess.Popen(args,stdout=subprocess.PIPE,stderr=None,stdin=None,shell=False) as proc:
-            yield proc.stdout.readline().decode('windows-1252')
+    def ejecutar(self,argumentos,guardar=True,charset='windows-1252'):
+        args = [sys.executable, "-m", "src.tp2",*argumentos]
+        cwd = self.pathArchivo("../")
+        self._primera = None
+        self._ultima = None
+
+        with subprocess.Popen(args,stdout=subprocess.PIPE,stderr=subprocess.PIPE,stdin=None,shell=False,cwd=cwd) as proc:
+            primera = proc.stdout.readline().decode(charset)
+            if (1 == guardar) or (True is guardar):
+                self._primera = primera
+            yield primera
+
+            ultima = primera
+            while ultima:
+                ultima = proc.stdout.readline().decode(charset)
+                if not ultima:
+                    return
+                if (-1 == guardar) or (True is guardar):
+                    self._ultima = ultima
+                yield ultima
+
+    def lineaCumple(self, lineas, fnTextoEnLinea, verbose=True):
+        cumple = any(fnTextoEnLinea(linea) for linea in lineas)
+        if verbose and not cumple:
+            if self._primera:
+                print("Primera: ", self._primera)
+            if self._ultima:
+                print("Última: ", self._primera)
+        return cumple
 
     def test_sin_argumentos(self):
         out = self.ejecutar([])
 
-        self.assertTrue(any(("nombre" in linea) and ("archivo" in linea) for linea in out))
+        self.assertTrue(self.lineaCumple(out, lambda txt: ("nombre" in txt) and ("archivo" in txt)))
+
+    def test_inexistente(self):
+        rutaArchivo = self.pathArchivo("entradas/nombre_de_archivo_inexistente.txt")
+        out = self.ejecutar([rutaArchivo])
+        self.assertTrue(self.lineaCumple(out, lambda txt: ("archivo" in txt) and ("inexistente" in txt)))
