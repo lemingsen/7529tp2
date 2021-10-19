@@ -2,19 +2,42 @@ import sys
 
 from src.lector import Lector
 
+class TP2Error(Exception):
+    pass
+
+
 class TP2:
     def __init__(self,args):
+        self.recomendaciones = None
         if 1 != len(args):
             self.imprimirAyuda()
+
         try:
-            nombreArchivo = args[0]
-            lector = Lector(nombreArchivo)
-        except FileNotFoundError as ex:
-            print("El achivo es inexistente o inaccesible: "+nombreArchivo+"\n")
-            print("Error original:"+str(ex),file=sys.stderr)            
+            self.procesar(args[0])
+            self.imprimir()
+
         except Exception as ex:
-            print("Se produjo un error inesperado\n")
-            print("Error original:"+str(ex),file=sys.stderr)            
+            if isinstance(ex, FileNotFoundError):
+                print("El archivo es inexistente o inaccesible.")
+            elif isinstance(ex, TP2Error):
+                print(str(ex))
+                return
+            else:
+                print("Se produjo un error inesperado.\n")
+            print("Error original:"+str(ex),file=sys.stderr)
+            return
+
+    def procesar(self,archivo):
+            lector = Lector(archivo)
+            if lector.grafo.cantidadArcos()<1:
+                raise TP2Error("El achivo no contiene arcos (aristas): "+archivo+"\n")
+            self.ids = [0]
+            self.alias = list(map(lambda id: lector.grafo.alias(id=id), self.ids))
+
+    def imprimir(self):
+        texto = "Ubicación recomendada" if 1==len(self.ids) else "Ubicaciones recomendadas"
+        texto += ": " + ", ".join(self.alias)
+        print(texto)
 
     def imprimirAyuda(self):
         margen = "            "
