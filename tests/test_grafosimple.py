@@ -46,6 +46,12 @@ class TestGrafoSimple(unittest.TestCase):
         adyacentes = grafo.arcoDesdeNodoId(0)
         self.assertTrue(isinstance(adyacentes, types.GeneratorType))
 
+    def test_arcos_es_generador(self):
+        grafo = GrafoSimple()
+        grafo.insertarArcoConAlias("A","B",10)
+        arcos = grafo.arcos()
+        self.assertTrue(isinstance(arcos, types.GeneratorType))
+
     def test_BA5(self):
         grafo = GrafoSimple()
         grafo.insertarArcoConAlias("B","A",5)
@@ -55,6 +61,7 @@ class TestGrafoSimple(unittest.TestCase):
         self.assertEqual(grafo.idDeNodoAlias("A"),1)
         self.assertEqual(list(grafo.arcoDesdeNodoId(0)), [(1,5)])
         self.assertEqual(list(grafo.arcoDesdeNodoId(1)), [])
+        self.assertEqual(list(grafo.arcos()),[(0,1,5)])
 
     def test_AB9BA5(self):
         grafo = GrafoSimple()

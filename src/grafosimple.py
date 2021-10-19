@@ -39,4 +39,6 @@ class GrafoSimple:
         return (arco for arco in self._arcosDesdeOrigen[idOrigen])
 
     def arcos(self):
-        return [(i,1,10) for i in range(self.cantidadArcos())]
+        return ( (desde,hasta,peso)
+                for desde in range(self.cantidadArcos())
+                for (hasta,peso) in self._arcosDesdeOrigen[desde] )
