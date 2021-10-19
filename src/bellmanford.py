@@ -21,6 +21,9 @@ class BellmanFordConCeroAgregado:
 
         for k in range(cantArcosCon0 - 1):
             self._iterar()
+            # Finalización temprana:
+            if(not self._huboCambios):
+                break
 
         # Comprobar bucle
         self._iterar()
