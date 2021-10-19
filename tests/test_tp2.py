@@ -1,3 +1,4 @@
+import io
 import os
 import subprocess
 import sys
@@ -12,8 +13,10 @@ class TestTP2(unittest.TestCase):
 
     def ejecutar(self,argumentos):
         args = [sys.executable, self.pathArchivo("../src/tp2.py"),*argumentos]
-        return subprocess.run(args,stdout=subprocess.PIPE)
+        with subprocess.Popen(args,stdout=subprocess.PIPE,stderr=None,stdin=None,shell=False) as proc:
+            yield proc.stdout.readline().decode('windows-1252')
 
     def test_sin_argumentos(self):
-        proc = self.ejecutar([])
-        
+        out = self.ejecutar([])
+
+        self.assertTrue(any(("nombre" in linea) and ("archivo" in linea) for linea in out))
