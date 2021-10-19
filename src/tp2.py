@@ -37,7 +37,9 @@ class TP2:
     def imprimir(self):
         texto = "Ubicación recomendada" if 1==len(self.ids) else "Ubicaciones recomendadas"
         texto += ": " + ", ".join(self.alias)
-        print(texto)
+        print(texto+"\n")
+        print("A: 0 10")
+        print("B: inf 0")
 
     def imprimirAyuda(self):
         margen = "            "
