@@ -102,3 +102,10 @@ class TestTP2(unittest.TestCase):
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([inf,inf,0,inf],"D")))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([inf,inf,inf,0],"C")))
 
+    def test_AB6BA7AC1CA2(self):
+        rutaArchivo = self.pathArchivo("entradas/test_AB6BA7AC1CA2.txt")
+        out = self.ejecutar([rutaArchivo])
+        self.assertTrue(self.lineaCumple(out, lambda txt: "recomendada: A" in txt))
+        self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([0,6,1],"A")))
+        self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([7,0,8],"B")))
+        self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([2,8,0],"C")))
