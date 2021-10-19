@@ -80,28 +80,28 @@ class TestTP2(unittest.TestCase):
     def test_AB10(self):
         rutaArchivo = self.pathArchivo("entradas/test_AB10.txt")
         out = self.ejecutar([rutaArchivo])
-        self.assertTrue(self.lineaCumple(out, lambda txt: ": A" in txt))
+        self.assertTrue(self.lineaCumple(out, lambda txt: ":\tA" in txt))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([0,10],"A")))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([inf,0],"B")))
         
     def test_BA5_sin_retorno(self):
         rutaArchivo = self.pathArchivo("entradas/test_BA5_sin_retorno.txt")
         out = self.ejecutar([rutaArchivo])
-        self.assertTrue(self.lineaCumple(out, lambda txt: ": B" in txt))
+        self.assertTrue(self.lineaCumple(out, lambda txt: ":\tB" in txt))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([0,5],"B")))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([inf,0],"A")))
 
     def test_BA_menos5(self):
         rutaArchivo = self.pathArchivo("entradas/test_BA_menos5.txt")
         out = self.ejecutar([rutaArchivo])
-        self.assertTrue(self.lineaCumple(out, lambda txt: "recomendada: B" in txt))
+        self.assertTrue(self.lineaCumple(out, lambda txt: "recomendada:\tB" in txt))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([0,-5],"B")))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([inf,0],"A")))
 
     def test_3arcos(self):
         rutaArchivo = self.pathArchivo("entradas/test_3arcos.txt")
         out = self.ejecutar([rutaArchivo])
-        self.assertTrue(self.lineaCumple(out, lambda txt: ": A" in txt))
+        self.assertTrue(self.lineaCumple(out, lambda txt: ":\tA" in txt))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([0,54,-3,62],"A")))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([inf,0,inf,8],"B")))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([inf,inf,0,inf],"D")))
@@ -110,7 +110,7 @@ class TestTP2(unittest.TestCase):
     def test_AB6BA7AC1CA2(self):
         rutaArchivo = self.pathArchivo("entradas/test_AB6BA7AC1CA2.txt")
         out = self.ejecutar([rutaArchivo])
-        self.assertTrue(self.lineaCumple(out, lambda txt: "recomendada: A" in txt))
+        self.assertTrue(self.lineaCumple(out, lambda txt: "recomendada:\tA" in txt))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([0,6,1],"A")))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([7,0,8],"B")))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([2,8,0],"C")))
@@ -119,7 +119,7 @@ class TestTP2(unittest.TestCase):
         """Grafo H del TP2 (todos positivos)"""
         rutaArchivo = self.pathArchivo("entradas/test_ejtp2_pos.txt")
         out = self.ejecutar([rutaArchivo])
-        self.assertTrue(self.lineaCumple(out, lambda txt: "recomendada: 5" in txt))
+        self.assertTrue(self.lineaCumple(out, lambda txt: "recomendada:\t5" in txt))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([ 0,14,1,27,18],"1")))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([26, 0,1,13,18],"2")))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([25,30,0,30,17],"3")))
@@ -131,7 +131,7 @@ class TestTP2(unittest.TestCase):
         Corresponde al grafo obtenido luego de aplicar Bellman-Ford."""
         rutaArchivo = self.pathArchivo("entradas/test_cormen_pos.txt")
         out = self.ejecutar([rutaArchivo])
-        self.assertTrue(self.lineaCumple(out, lambda txt: "recomendadas: 2, 3, 4" in txt))
+        self.assertTrue(self.lineaCumple(out, lambda txt: "recomendadas:\t2, 3, 4" in txt))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([0,2,2,2,0],"1")))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([2,0,0,0,2],"2")))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([2,0,0,0,2],"3")))
@@ -141,7 +141,7 @@ class TestTP2(unittest.TestCase):
     def test_ciclo_positivo(self):
         rutaArchivo = self.pathArchivo("entradas/test_ciclo_positivo.txt")
         out = self.ejecutar([rutaArchivo])
-        self.assertTrue(self.lineaCumple(out, lambda txt: "recomendada: A" in txt))
+        self.assertTrue(self.lineaCumple(out, lambda txt: "recomendada:\tA" in txt))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([0,-5,-15],"A")))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([10,0,-10],"B")))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([20,15,0],"C")))
@@ -149,7 +149,7 @@ class TestTP2(unittest.TestCase):
     def test_4nodos_con_negativos(self):
         rutaArchivo = self.pathArchivo("entradas/test_4nodos_con_negativos.txt")
         out = self.ejecutar([rutaArchivo])
-        self.assertTrue(self.lineaCumple(out, lambda txt: ": A" in txt))
+        self.assertTrue(self.lineaCumple(out, lambda txt: ":\tA" in txt))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([0,-4,1,-1],"A")))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([inf,0,5,3],"B")))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([inf,-5,0,-2],"C")))
@@ -158,7 +158,7 @@ class TestTP2(unittest.TestCase):
     def test_5nodos_con_negativos(self):
         rutaArchivo = self.pathArchivo("entradas/test_5nodos_con_negativos.txt")
         out = self.ejecutar([rutaArchivo])
-        self.assertTrue(self.lineaCumple(out, lambda txt: "recomendada: D" in txt))
+        self.assertTrue(self.lineaCumple(out, lambda txt: "recomendada:\tD" in txt))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([ 0,6, 2,7, 5],"A")))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([-4,0,-4,1,-1],"B")))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([ 0,6, 0,5, 3],"C")))
@@ -169,7 +169,7 @@ class TestTP2(unittest.TestCase):
         """Ejemplo tomado de Cormen et al. «Intorduction to Algorithms», 3ª ed."""
         rutaArchivo = self.pathArchivo("entradas/test_cormen.txt")
         out = self.ejecutar([rutaArchivo])
-        self.assertTrue(self.lineaCumple(out, lambda txt: "recomendada: 4" in txt))
+        self.assertTrue(self.lineaCumple(out, lambda txt: "recomendada:\t4" in txt))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([0, 1,-3,2,-4], "1")))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([3, 0,-4,1,-1], "2")))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([7, 4, 0,5, 3], "3")))
@@ -183,7 +183,7 @@ class TestTP2(unittest.TestCase):
         negativo, y otro accede a un solo nodo pero el costo total es menor."""
         rutaArchivo = self.pathArchivo("entradas/test_criterio_dificil.txt")
         out = self.ejecutar([rutaArchivo])
-        #self.assertTrue(self.lineaCumple(out, lambda txt: "recomendada: ?" in txt))
+        #self.assertTrue(self.lineaCumple(out, lambda txt: "recomendada:\t?" in txt))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([  0,  2,inf,inf,  0],"A")))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([ -1,  0,inf,inf, -1],"B")))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([inf,inf,  0,  1,-19],"C")))
