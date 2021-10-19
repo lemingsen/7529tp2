@@ -126,7 +126,7 @@ class TestTP2(unittest.TestCase):
         Corresponde al grafo obtenido luego de aplicar Bellman-Ford."""
         rutaArchivo = self.pathArchivo("entradas/test_cormen_pos.txt")
         out = self.ejecutar([rutaArchivo])
-        self.assertTrue(self.lineaCumple(out, lambda txt: "recomendada: 5" in txt))
+        self.assertTrue(self.lineaCumple(out, lambda txt: "recomendadas: 2, 3, 4" in txt))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([0,2,2,2,0],"1")))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([2,0,0,0,2],"2")))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([2,0,0,0,2],"3")))
