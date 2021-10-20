@@ -9,22 +9,17 @@
     \begin{tabular}{@{}lcc@{}}
     \toprule
     \multicolumn{1}{c}{\textbf{Algoritmo}}                 & \textbf{Temporal}          & \textbf{Espacial} \\ \midrule
-    \hyperref[sec:complej_Bellman]{\textbf{Bellman-Ford}}  & $O(V^2\times E)$           & $O(V+E)$     \\
-    \hyperref[sec:complej_Floyd]{\textbf{Floyd-Warshall}}  & $\Theta(V^3)$              & $O(V^2)$          \\
-    \hyperref[sec:complej_Johnson]{\textbf{Johnson}}       & $O(V^2 lg(V) + V\times E)$ & $O(V^2+V+E)$      \\ \bottomrule
+    {\textbf{Bellman-Ford}}  & $O(V^2\times E)$           & $O(V+E)$     \\
+    {\textbf{Floyd-Warshall}}  & $\Theta(V^3)$              & $O(V^2)$          \\
+    {\textbf{Johnson}}       & $O(V^2 lg(V) + V\times E)$ & $O(V^2+V+E)$      \\ \bottomrule
     \end{tabular}
     \caption{\label{tabComplejidades}Complejidades. $V$=vértices, $E$=aristas.}
 \end{table}
 
-\subsubsection{Algoritmo de Bellman-Ford}\label{sec:complej_Bellman}
 La complejidad temporal es $O(V\times E)$ por vértice de origen;
 sin embargo a los fines de comparación se debe tomar en cuenta
 la complejidad para analizar todo el grafo (cada vértice como origen),
 lo que lo convierte en $O(V^2\times E)$.
-
-\subsubsection{Algoritmo de Floyd-Warshall}\label{sec:complej_Floyd}
-
-\subsubsection{Algoritmo de Johnson}\label{sec:complej_Johnson}
 
 % FIN DEL DOCUMENTO (SECCIÓN P1.2)
 % NO BORRAR POR ACCIDENTE NI ESCRIBIR COSSA ABAJO
