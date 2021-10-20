@@ -149,6 +149,11 @@ class TestTP2(unittest.TestCase):
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([10,0,-10],"B")))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([20,15,0],"C")))
 
+    def test_ciclo_negativo(self):
+        rutaArchivo = self.pathArchivo("entradas/test_ciclo_negativo.txt")
+        out = self.ejecutar([rutaArchivo])
+        self.assertTrue(self.lineaCumple(out, lambda txt: "negativo" in txt))
+
     def test_4nodos_con_negativos(self):
         rutaArchivo = self.pathArchivo("entradas/test_4nodos_con_negativos.txt")
         out = self.ejecutar([rutaArchivo])
