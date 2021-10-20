@@ -5,18 +5,18 @@
 \begin{document}
 
 \subsubsection{Convertir a grafo sin negativos (Bellman-Ford)}\label{sec:parte1_4_1}
-Para el ejemplo tomaremos un grafo G arbitrario (\cref{fig:grafoG}).
-Como tiene pesos negativos, a partir de éste, creamos un grafo $G^\prime$ (\cref{fig:grafoG_prima})
+Para el ejemplo tomaremos un grafo G arbitrario (\cref{grafoG}).
+Como tiene pesos negativos, a partir de éste, creamos un grafo $G^\prime$ (\cref{grafoG_prima})
 en principio idéntico pero al que le agregamos temporalmente un
 vértice $V_0$ con aristas de peso $0$ hacia cada otro nodo preexistente.
 
 \begin{figure}[H]
     \centering
     \subcaptionbox
-        {\label{fig:grafoG}\textbf{Grafo $G$ (original)}}
+        {\label{grafoG}\textbf{Grafo $G$ (original)}}
         {\includegraphics[width=0.4\linewidth,angle=0,origin=c]{out/ford/ford1A.png}}
     \subcaptionbox
-        {\label{fig:grafoG_prima}\textbf{Grafo $G^\prime$ (con nodo temporal 0)}}
+        {\label{grafoG_prima}\textbf{Grafo $G^\prime$ (con nodo temporal 0)}}
         {\includegraphics[width=0.4\linewidth,angle=0,origin=c]{out/ford/ford1B.png}}
 \end{figure}
 
@@ -81,7 +81,7 @@ big O, puede reducir el tiempo real de cómputo.}
     $h(5)+w(5,3)$ & $0+(-4)$  & $>$ & $-4$   & Sin cambios                  \\
     $h(5)+w(5,4)$ & $0+13$    & $>$ & $0$    & Sin cambios                  \\ \bottomrule
     \end{tabular}
-    \label{Tab:EjFord2}
+    \label{EjFord2}
 \end{table}
 
 Como puede observarse en el \Cref{EjFord1}, en las primeras
@@ -168,7 +168,7 @@ Donde:
     \textbf{V\textsubscript{5}}  & 8   & 13  & 0  & 13  & 0   \\ \bottomrule
     \end{tabular}
     \caption{Distancia mínima}
-    \label{tab:DijkstraGrafoH_minimos}
+    \label{DijkstraGrafoHMinimos}
 \end{subtable}
 \hfill
 \begin{subtable}[H]{0.45\textwidth}
@@ -183,10 +183,10 @@ Donde:
     \textbf{V\textsubscript{5}}  & V\textsubscript{5}  & V\textsubscript{4}  & V\textsubscript{5}  & V\textsubscript{5}  & -                   \\ \bottomrule
     \end{tabular}
     \caption{Nodo antecesor a cada destino}
-    \label{tab:DijkstraGrafoH_antecesor}
+    \label{DijkstraGrafoHAntecesor}
     \end{subtable}
 \caption{Resultados al aplicar Dijkstra}
-\label{tab:DijkstraGrafoH}
+\label{DijkstraGrafoH}
 \end{table}
 
 \subsubsection{Restaurar valor de distancias}\label{sec:parte1_4_3}
@@ -198,8 +198,8 @@ verdadera distancia hasta cada vértice destino $v$:
 $$d(u,v) ~:=~ \hat{w}(u,v) + h(v) - h(u)$$
 
 Tomando entonces $h(x)$ que calculamos de Bellman-Ford,
-actualizamos (\cref{tab:AjusteJohnson_calculos}) cada distancia mínima de \cref{tab:DijkstraGrafoH_minimos}
-para obtener la tabla \cref{tab:AjusteJohnson_valores} de distancias mínimas reales.
+actualizamos (\cref{AjusteJohnsonCalculos}) cada distancia mínima de \cref{DijkstraGrafoHMinimos}
+para obtener la tabla \cref{AjusteJohnsonValores} de distancias mínimas reales.
 
 \begin{table}[H]
     \centering
@@ -218,7 +218,7 @@ para obtener la tabla \cref{tab:AjusteJohnson_valores} de distancias mínimas re
     \textbf{h(V\textsubscript{5})= 0}  & $8~ \cancel{+0-0}$  & 13+(-2)-0  & 0+(-4)-0  & $13~\cancel{+0-0}$  & $0 ~\cancel{+0-0}$  \\ \bottomrule
     \end{tabular}
     \caption{Cálculos de ajuste de distancias reales}
-    \label{tab:AjusteJohnson_calculos}
+    \label{AjusteJohnsonCalculos}
 \end{table}
 
 \begin{table}[H]
@@ -233,36 +233,36 @@ para obtener la tabla \cref{tab:AjusteJohnson_valores} de distancias mínimas re
     \textbf{V\textsubscript{5}}  &  8  & 11  & -4  & 13  &  0  \\ \bottomrule
     \end{tabular}
     \caption{Valores reales de distancias mínimas}
-    \label{tab:AjusteJohnson_valores}
+    \label{AjusteJohnsonValores}
 \end{table}
     
 \subsubsection{Reconstrucción caminos mínimos}\label{sec:parte1_4_4}
 
-Para cualquier \texttt{(origen, destino)}, a partir del \cref{tab:DijkstraGrafoH_antecesor}
+Para cualquier \texttt{(origen, destino)}, a partir del \cref{DijkstraGrafoHAntecesor}
 podemos (recursivamenta desde \texttt{destino} al \texttt{origen})
 reconstruir el camino mínimo, sabiendo que su peso es el calculado
-en el \cref{tab:AjusteJohnson_valores}. A continuación en la figura
-\cref{fig:GrafoH_minimos}, se muestran a modo de comprobación los
+en el \cref{AjusteJohnsonValores}. A continuación en la figura
+\cref{GrafoH_minimos}, se muestran a modo de comprobación los
 caminos mínimos según el vértice de \texttt{origen}:
 
 \begin{figure}[H]
     \centering
     \subcaptionbox
-        {\label{fig:GrafoH_minimos1}\textbf{Caminos mínmos desde V\textsubscript{1}}.}
+        {\label{GrafoH_minimos1}\textbf{Caminos mínmos desde V\textsubscript{1}}.}
         {\includegraphics[width=0.4\linewidth,angle=0,origin=c]{out/caminos/camino1.png}}
     \subcaptionbox
-        {\label{fig:GrafoH_minimos2}\textbf{Caminos mínmos desde V\textsubscript{2}}.}
+        {\label{GrafoH_minimos2}\textbf{Caminos mínmos desde V\textsubscript{2}}.}
         {\includegraphics[width=0.4\linewidth,angle=0,origin=c]{out/caminos/camino2.png}}
     \subcaptionbox
-        {\label{fig:GrafoH_minimos3}\textbf{Caminos mínmos desde V\textsubscript{3}}.}
+        {\label{GrafoH_minimos3}\textbf{Caminos mínmos desde V\textsubscript{3}}.}
         {\includegraphics[width=0.4\linewidth,angle=0,origin=c]{out/caminos/camino3.png}}
     \subcaptionbox
-        {\label{fig:GrafoH_minimos4}\textbf{Caminos mínmos desde V\textsubscript{4}}.}
+        {\label{GrafoH_minimos4}\textbf{Caminos mínmos desde V\textsubscript{4}}.}
         {\includegraphics[width=0.4\linewidth,angle=0,origin=c]{out/caminos/camino4.png}}
     \subcaptionbox
-        {\label{fig:GrafoH_minimos5}\textbf{Caminos mínmos desde V\textsubscript{5}}.}
+        {\label{GrafoH_minimos5}\textbf{Caminos mínmos desde V\textsubscript{5}}.}
         {\includegraphics[width=0.4\linewidth,angle=0,origin=c]{out/caminos/camino5.png}}
-    \caption{\label{fig:GrafoH_minimos}\textbf{Grafo $H$} con caminos mínimos (en verde, junto con la distancia) según el punto de origen.}
+    \caption{\label{GrafoH_minimos}\textbf{Grafo $H$} con caminos mínimos (en verde, junto con la distancia) según el punto de origen.}
 \end{figure}
 
 \end{document}
