@@ -37,6 +37,32 @@ El último caso se da cuando el grafo tiene un ciclo negativo.
 En instancias de este tipo, el algoritmo reporta que el grafo
 contiene dicho ciclo y termina.
 
+Optimalidad del algoritmo de Johnson
+
+Supongamos una solución J para la instancia I, la cuál consta de un grafo del cual deseamos saber todos los
+pesos de los caminos minimales entre todos sus vértices. J es una solución obtenida mediante el algoritmo de
+Johnson. J será óptima si su matriz resultante, la obtenida al finalizar el algoritmo de Johnson, contiene a
+todos los pesos de los caminos minimales del grafo de I.
+
+Para hallar los caminos minimales, el algoritmo de Johnson, si decide que puede hacerse, aplica el algoritmo
+de Djikstra sobre cada vértice del grafo y registra el resultado de cada uno de sus usos en una matriz. Dado
+que el algoritmo de Djikstra asegura la obtención óptima de caminos minimales,
+\footnote{)Cormen tercera edición, pg 659-660}
+el algoritmo de Johnson entonces guarda los pesos de dichos caminos minimales.
+
+En los casos en los que Djikstra no es aplicable, y el grafo de I no contiene ciclos negativos, Johnson
+aplica un reponderamiento sobre las aristas, brevemente explicado anteriormente, el cual permite la aplicación
+de Djikstra. Esto ya fue probado que resulta en que el algoritmo de Johnson guardará los pesos de los caminos
+minimales.
+
+Por último, el caso del grafo de I con ciclo negativo, es redundante para nuestro problema, ya que simplemente
+ejecutaríamos un loop infinito sobre dicho ciclo para obtener ganancias infinitas. Tarde o temprano esto se
+vuelve inviable en una situación real. En este caso, el algoritmo de Johnson devuelve un mensaje alertando
+sobre el ciclo negativo, ya que no es aplicable sobre un grafo de estas características.
+
+En conclusión, el algoritmo de Johnson es óptimo, ya que retorna el resultado esperado, gracias a el uso de
+otros algoritmos óptimos a su vez.
+
 % FIN DEL DOCUMENTO (SECCIÓN P1.1)
 % NO BORRAR POR ACCIDENTE NI ESCRIBIR COSSA ABAJO
 \end{document}
