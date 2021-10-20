@@ -33,6 +33,8 @@ class TP2:
             if lector.grafo.cantidadArcos()<1:
                 raise TP2Error("El achivo no contiene arcos (aristas): "+archivo+"\n")
             self.johnson = Johnson(lector.grafo)
+            if False is self.johnson.matriz:
+                raise TP2Error("Se detectó un bucle negativo")
             self.matriz = self.johnson.matriz
             self.grafo = lector.grafo
             # Calcular recomendación

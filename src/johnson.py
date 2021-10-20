@@ -8,6 +8,9 @@ class Johnson:
 
         if any(peso<0 for (u,v,peso) in grafo.arcos()):
             h = BellmanFordConCeroAgregado(grafo).distancias
+            if False is h:
+                self.matriz = False
+                return
             grafo.modificarPesos( lambda w,u,v: w +h[u] -h[v] )
         else:
             h = [0 for i in range(grafo.cantidadNodos())]
