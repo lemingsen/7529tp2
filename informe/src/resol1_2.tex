@@ -8,10 +8,10 @@
     \centering
     \begin{tabular}{@{}lcc@{}}
     \toprule
-    \multicolumn{1}{c}{\textbf{Algoritmo}} & \textbf{Temporal}          & \textbf{Espacial} \\ \midrule
-    \hyperref[sec:complej_Bellman]{\textbf{Bellman-Ford}}                  & $O(V^2\times E)$           &                   \\
-    \hyperref[sec:complej_Floyd]{\textbf{Floyd-Warshall}}                & $\Theta(V^3)$              & $O(V^2)$          \\
-    \hyperref[sec:complej_Johnson]{\textbf{Johnson}}                       & $O(V^2 lg(V) + V\times E)$ &                   \\ \bottomrule
+    \multicolumn{1}{c}{\textbf{Algoritmo}}                 & \textbf{Temporal}          & \textbf{Espacial} \\ \midrule
+    \hyperref[sec:complej_Bellman]{\textbf{Bellman-Ford}}  & $O(V^2\times E)$           & $O(V+E)$     \\
+    \hyperref[sec:complej_Floyd]{\textbf{Floyd-Warshall}}  & $\Theta(V^3)$              & $O(V^2)$          \\
+    \hyperref[sec:complej_Johnson]{\textbf{Johnson}}       & $O(V^2 lg(V) + V\times E)$ & $O(V^2+V+E)$      \\ \bottomrule
     \end{tabular}
     \caption{\label{tabComplejidades}Complejidades. $V$=vértices, $E$=aristas.}
 \end{table}
