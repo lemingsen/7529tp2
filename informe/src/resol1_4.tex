@@ -155,6 +155,164 @@ Donde:
 
 \subsubsection{Aplicar Dijkstra}\label{sec:parte1_4_2}
 
+\paragraph{Dijkstra desde v\'ertice 1:}\par
+\begin{enumerate}
+\item[i] Inicializar v\'rtice de origen con distancia 0.
+ \item[Visitando 1:] con distancia estimada 0:
+\begin{enumerate}
+   \item[Arista hasta 2:] de peso 14 es 14, mejor que anterior (inf), \textbf{se actualiza}.
+   \item[Arista hasta 3:] de peso 1 es 1, mejor que anterior (inf), \textbf{se actualiza}.
+\end{enumerate}
+
+ \item[Visitando 3:] con distancia estimada 1:
+\begin{enumerate}
+   \item[Arista hasta 5:] de peso 17 es 18, mejor que anterior (inf), \textbf{se actualiza}.
+\end{enumerate}
+
+ \item[Visitando 2:] con distancia estimada 14:
+\begin{enumerate}
+   \item[Arista hasta 4:] de peso 13 es 27, mejor que anterior (inf), \textbf{se actualiza}.
+\end{enumerate}
+
+ \item[Visitando 5:] con distancia estimada 18:
+\begin{enumerate}
+   \item[Arista hasta 4:] de peso 13 es 31, \textbf{NO ES} mejor que anterior (27).
+\end{enumerate}
+
+ \item[Visitando 4:] con distancia estimada 27:
+\begin{enumerate}
+   \item[x] No hay aristas a v\'ertices sin visitar.
+\end{enumerate}
+
+\end{enumerate}
+
+\paragraph{Dijkstra desde v\'ertice 2:}\par
+\begin{enumerate}
+\item[i] Inicializar v\'rtice de origen con distancia 0.
+ \item[Visitando 2:] con distancia estimada 0:
+\begin{enumerate}
+   \item[Arista hasta 3:] de peso 1 es 1, mejor que anterior (inf), \textbf{se actualiza}.
+   \item[Arista hasta 4:] de peso 13 es 13, mejor que anterior (inf), \textbf{se actualiza}.
+\end{enumerate}
+
+ \item[Visitando 3:] con distancia estimada 1:
+\begin{enumerate}
+   \item[Arista hasta 5:] de peso 17 es 18, mejor que anterior (inf), \textbf{se actualiza}.
+\end{enumerate}
+
+ \item[Visitando 4:] con distancia estimada 13:
+\begin{enumerate}
+   \item[x] No hay aristas a v\'ertices sin visitar.
+\end{enumerate}
+
+ \item[Visitando 5:] con distancia estimada 18:
+\begin{enumerate}
+   \item[Arista hasta 1:] de peso 8 es 26, mejor que anterior (inf), \textbf{se actualiza}.
+\end{enumerate}
+
+ \item[Visitando 1:] con distancia estimada 26:
+\begin{enumerate}
+   \item[x] No hay aristas a v\'ertices sin visitar.
+\end{enumerate}
+
+\end{enumerate}
+
+\paragraph{Dijkstra desde v\'ertice 3:}\par
+\begin{enumerate}
+\item[i] Inicializar v\'rtice de origen con distancia 0.
+ \item[Visitando 3:] con distancia estimada 0:
+\begin{enumerate}
+   \item[Arista hasta 5:] de peso 17 es 17, mejor que anterior (inf), \textbf{se actualiza}.
+\end{enumerate}
+
+ \item[Visitando 5:] con distancia estimada 17:
+\begin{enumerate}
+   \item[Arista hasta 1:] de peso 8 es 25, mejor que anterior (inf), \textbf{se actualiza}.
+   \item[Arista hasta 4:] de peso 13 es 30, mejor que anterior (inf), \textbf{se actualiza}.
+\end{enumerate}
+
+ \item[Visitando 1:] con distancia estimada 25:
+\begin{enumerate}
+   \item[Arista hasta 2:] de peso 14 es 39, mejor que anterior (inf), \textbf{se actualiza}.
+\end{enumerate}
+
+ \item[Visitando 4:] con distancia estimada 30:
+\begin{enumerate}
+   \item[Arista hasta 2:] de peso 0 es 30, mejor que anterior (39), \textbf{se actualiza}.
+\end{enumerate}
+
+ \item[Visitando 2:] con distancia estimada 30:
+\begin{enumerate}
+   \item[x] No hay aristas a v\'ertices sin visitar.
+\end{enumerate}
+
+\end{enumerate}
+
+\paragraph{Dijkstra desde v\'ertice 4:}\par
+\begin{enumerate}
+\item[i] Inicializar v\'rtice de origen con distancia 0.
+ \item[Visitando 4:] con distancia estimada 0:
+\begin{enumerate}
+   \item[Arista hasta 2:] de peso 0 es 0, mejor que anterior (inf), \textbf{se actualiza}.
+\end{enumerate}
+
+ \item[Visitando 2:] con distancia estimada 0:
+\begin{enumerate}
+   \item[Arista hasta 3:] de peso 1 es 1, mejor que anterior (inf), \textbf{se actualiza}.
+\end{enumerate}
+
+ \item[Visitando 3:] con distancia estimada 1:
+\begin{enumerate}
+   \item[Arista hasta 5:] de peso 17 es 18, mejor que anterior (inf), \textbf{se actualiza}.
+\end{enumerate}
+
+ \item[Visitando 5:] con distancia estimada 18:
+\begin{enumerate}
+   \item[Arista hasta 1:] de peso 8 es 26, mejor que anterior (inf), \textbf{se actualiza}.
+\end{enumerate}
+
+ \item[Visitando 1:] con distancia estimada 26:
+\begin{enumerate}
+   \item[x] No hay aristas a v\'ertices sin visitar.
+\end{enumerate}
+
+\end{enumerate}
+
+\paragraph{Dijkstra desde v\'ertice 5:}\par
+\begin{enumerate}
+\item[i] Inicializar v\'rtice de origen con distancia 0.
+ \item[Visitando 5:] con distancia estimada 0:
+\begin{enumerate}
+   \item[Arista hasta 1:] de peso 8 es 8, mejor que anterior (inf), \textbf{se actualiza}.
+   \item[Arista hasta 3:] de peso 0 es 0, mejor que anterior (inf), \textbf{se actualiza}.
+   \item[Arista hasta 4:] de peso 13 es 13, mejor que anterior (inf), \textbf{se actualiza}.
+\end{enumerate}
+
+ \item[Visitando 3:] con distancia estimada 0:
+\begin{enumerate}
+   \item[x] No hay aristas a v\'ertices sin visitar.
+\end{enumerate}
+
+ \item[Visitando 1:] con distancia estimada 8:
+\begin{enumerate}
+   \item[Arista hasta 2:] de peso 14 es 22, mejor que anterior (inf), \textbf{se actualiza}.
+\end{enumerate}
+
+ \item[Visitando 4:] con distancia estimada 13:
+\begin{enumerate}
+   \item[Arista hasta 2:] de peso 0 es 13, mejor que anterior (22), \textbf{se actualiza}.
+\end{enumerate}
+
+ \item[Visitando 2:] con distancia estimada 13:
+\begin{enumerate}
+   \item[x] No hay aristas a v\'ertices sin visitar.
+\end{enumerate}
+
+\end{enumerate}
+
+
+
+
 \begin{table}[H]
 \begin{subtable}[H]{0.45\textwidth}
     \centering
