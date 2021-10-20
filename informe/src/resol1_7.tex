@@ -45,7 +45,7 @@ con mayor costo).
         {\includegraphics[width=0.4\linewidth,angle=0,origin=c]{img/disyuntiva.jpg}}
     \subcaptionbox
         {\label{outDisyuntiva}\textbf{Salida del programa, con y sin disyuntiva.}}
-        {\includegraphics[width=0.4\linewidth,angle=0,origin=c]{img/salida.jpg}}
+        {\includegraphics[width=0.4\linewidth,angle=0,origin=c]{img/salida.png}}
 \end{figure}
 
 Por ejemplo, para el caso del \cref{grafoDisyuntiva} si la fábrica se ubicara en
@@ -218,12 +218,6 @@ En particular, se optó por evitar crear una copia del grafo o tener que modific
             for u in range(grafo.cantidadNodos()):
                 d = Dijkstra(grafo, u).distancias
                 self.matriz.append([ d[v] + h[v] -h[u] for v in range(grafo.cantidadNodos()) ])
-\end{alternate}
-
-\paragraph{src.Criterio}
-
-\begin{alternate}[breaklines=true,numbers=left,xleftmargin=5mm]
-    class
 \end{alternate}
 
 % FIN DEL DOCUMENTO (SECCIÓN P1.7)
