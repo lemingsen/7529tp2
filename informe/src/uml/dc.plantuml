@@ -1,0 +1,17 @@
+@startuml DCgeneral
+hide empty members
+
+class TP2 {}
+class Criterio {}
+class Johnson {}
+class lector{}
+
+TP2 ..> lector
+lector ..> Grafosimple
+TP2 --> Criterio
+TP2 --> Johnson
+
+Johnson ..> Dijkstra
+Johnson ..> BellmanFordConCeroAgregado
+
+@enduml
