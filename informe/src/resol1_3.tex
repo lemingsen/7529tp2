@@ -1,0 +1,19 @@
+\documentclass[../tp2_grupo404.tex]{subfiles}
+
+\graphicspath{{\subfix{../out/}}}
+
+\begin{document}
+
+El algoritmo de Johnson puede ser más rápido que el de Floyd-Warshall en el caso  
+de grafos dispersos (pocas aristas), pero el de Floyd-Warshall es más rápido  
+cuando el grafo es denso (muchas aristas). La razón por la cual el algoritmo de  
+Johnson es mejor para grafos dispersos es debido a que su complejidad temporal  
+depende de la cantidad de aristas en el grafo, mientras que el de Floyd-Warshall no. 
+\par 
+El algoritmo de Johnson tiene una complejidad temporal de $O(V^2.log(V)+|V|.|E|)$.  
+Por ende, si la cantidad de aristas es pequeña, correrá más rápido que con el  
+tiempo $O(V^3)$ del de Floyd-Warshall.
+
+% FIN DEL DOCUMENTO (SECCIÓN P1.3)
+% NO BORRAR POR ACCIDENTE NI ESCRIBIR COSSA ABAJO
+\end{document}
