@@ -194,3 +194,16 @@ class TestTP2(unittest.TestCase):
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([inf,inf,  0,  1,-19],"C")))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([inf,inf,inf,  0,-20],"D")))
         self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([inf,inf,inf,inf,  0],"E")))
+
+    def test_conMejoresCosto_varios(self):
+        rutaArchivo = self.pathArchivo("entradas/test_conMejoresCosto_varios.txt")
+        out = self.ejecutar([rutaArchivo])
+        self.assertTrue(self.lineaCumple(out, lambda txt: "promedio:\tC" in txt))
+        self.assertTrue(self.lineaCumple(out, lambda txt: ":\tA" in txt))
+        self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([ 0 , 3 , 3 , 3 ,inf,inf],"A")))
+        self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([inf, 0 ,inf,inf,inf,inf],"B")))
+        self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([inf,inf, 0 , 0 ,inf,inf],"C")))
+        self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([inf,inf,inf, 0 ,inf,inf],"D")))
+        self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([inf,inf,inf, 8 , 0 , 6 ],"E")))
+        self.assertTrue(self.lineaCumple(out, self.fnMatchFilaYNombre([inf,inf,inf, 2 ,inf, 0 ],"F")))
+
