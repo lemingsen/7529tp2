@@ -14,14 +14,14 @@ class Criterio:
         limite = list(map(lambda an: an[0], self.analisis))
 
         self.mejorCosto = min(costos)
-        self.mejoresCosto = [id for id in ids if costos[id] == self.mejorCosto]
-        minMejoresCosto = min([limite[id] for id in self.mejoresCosto])
-        self.mejoresCosto = [id for id in self.mejoresCosto if limite[id] == minMejoresCosto]
+        mejoresCosto = [id for id in ids if costos[id] == self.mejorCosto]
+        limiteMenorParaMejoresCosto = min([limite[id] for id in mejoresCosto])
+        self.mejoresCosto = [id for id in mejoresCosto if limite[id] == limiteMenorParaMejoresCosto]
 
         self.mejorLimite = min(limite)
-        self.mejoresLimite = [id for id in ids if limite[id] == self.mejorLimite]
-        minCostoEnLimite = min([costos[id] for id in self.mejoresLimite])
-        self.mejoresLimite = [id for id in self.mejoresLimite if costos[id] == minCostoEnLimite]
+        mejoresLimite = [id for id in ids if limite[id] == self.mejorLimite]
+        minCostoEnLimite = min([costos[id] for id in mejoresLimite])
+        self.mejoresLimite = [id for id in mejoresLimite if costos[id] == minCostoEnLimite]
 
         self.mejores = self._mejores()
 
