@@ -10,14 +10,14 @@ sobre grafos de escasas aristas, ya que los procesa con mayor
 rapidez que otros algoritmos de símil uso.
 
 Su funcionamiento se basa en reponderaciones del grafo. Además,
-utiliza los algoritmos de Djikstra y Bellman-Ford como subrutinas.
+utiliza los algoritmos de Dijkstra y Bellman-Ford como subrutinas.
 
 La reponderación se ejecuta condicionalmente. Si todos los pesos
 de las aristas son positivos, no es necesaria una reponderación,
-basta con ejecutar Djikstra una vez por vértice y devolviendo el
+basta con ejecutar Dijkstra una vez por vértice y devolviendo el
 resultado final. En cambio, si el grafo (G) tiene aristas de peso
 negativo, pero no ciclos negativos, computamos un nuevo set de
-aristas con pesos no negativos que nos permita utilizar Djikstra,
+aristas con pesos no negativos que nos permita utilizar Dijkstra,
 como en el caso anterior. A este proceso de cómputo de nuevas
 aristas se lo llama reponderación, o cambio de peso.
 
@@ -31,7 +31,7 @@ propiedades:
 El proceso de reponderación tiene un costo de $O(V\times E)$.
 
 Dado que la reponderación asegura que no quedan aristas de peso
-negativo, se procesa por Djikstra como en el caso anterior.
+negativo, se procesa por Dijkstra como en el caso anterior.
 El último caso se da cuando el grafo tiene un ciclo negativo.
 
 En instancias de este tipo, el algoritmo reporta que el grafo
