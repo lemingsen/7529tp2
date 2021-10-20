@@ -11,10 +11,13 @@ class Criterio:
         ids = range(len(matriz))
 
         costos = list(map(lambda an: an[1], self.analisis))
+        limite = list(map(lambda an: an[0], self.analisis))
+
         self.mejorCosto = min(costos)
         self.mejoresCosto = [id for id in ids if costos[id] == self.mejorCosto]
+        minMejoresCosto = min([limite[id] for id in self.mejoresCosto])
+        self.mejoresCosto = [id for id in self.mejoresCosto if limite[id] == minMejoresCosto]
 
-        limite = list(map(lambda an: an[0], self.analisis))
         self.mejorLimite = min(limite)
         self.mejoresLimite = [id for id in ids if limite[id] == self.mejorLimite]
         minCostoEnLimite = min([costos[id] for id in self.mejoresLimite])
