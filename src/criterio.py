@@ -17,6 +17,8 @@ class Criterio:
         limite = list(map(lambda an: an[0], self.analisis))
         self.mejorLimite = min(limite)
         self.mejoresLimite = [id for id in ids if limite[id] == self.mejorLimite]
+        minCostoEnLimite = min([costos[id] for id in self.mejoresLimite])
+        self.mejoresLimite = [id for id in self.mejoresLimite if costos[id] == minCostoEnLimite]
 
         self.mejores = self._mejores()
 
