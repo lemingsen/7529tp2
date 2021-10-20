@@ -1,0 +1,126 @@
+\documentclass[../tp2_grupo404.tex]{subfiles}
+
+\graphicspath{{\subfix{../out/}}}
+
+\begin{document}
+
+\subsubsection{Breve descripción}
+
+\paragraph{\underline{Greedy}}
+
+Metodología de resolución de problemas de optimización
+(minimización o maximización) que consiste en dividir el problema en
+subproblemas con una jerarquía entre ellos. Cada subproblema se va
+resolviendo iterativamente mediante una elección heurística y habilita
+nuevos subproblemas.
+\par Para cada problema existen diferentes algoritmos greedy, pero
+algunos no resultan en la solución óptima y no todos los problemas
+pueden resolverse mediante un algoritmo greedy.
+\par Para poder aplicar esta metodología, un problema debe contener
+las siguientes propiedades:
+\begin{itemize}
+    \item \underline{Elección greedy:} Se selecciona una solución óptima local
+    esperando que la misma nos acerque a la solución óptima global.
+    Para solucionar un subproblema, analiza el conjunto de los elementos
+    del problema en el estado en que llegaron al mismo y elige
+    heurísticamente la “mejor solución” local. Un subproblema está
+    condicionado por las elecciones de los anteriores problemas y
+    condiciona a los subproblemas siguientes.
+
+    \item \underline{Subestructura óptima:} Un problema contiene una subestructura
+    óptima si la solución óptima global del mismo contiene en su
+    interior las soluciones óptimas de sus subproblemas. La elección
+    greedy iterativamente resolverá los subproblemas óptimamente y nos
+    llevará a la solución óptima global.
+
+\end{itemize}
+
+\paragraph{\underline{División y conquista}}
+Consiste en dividir el problema en
+subproblemas de igual naturaleza y menor tamaño. Se los conquista
+(resuelve) en forma recursiva (hasta un caso base) y se combina los
+resultados en una solución general. Generalmente se puede aplicar a
+problemas donde la solución por fuerza bruta ya tiene una complejidad
+polinómica. Analizar su complejidad requiere resolver una relación de
+recurrencia.
+
+\paragraph{\underline{Programación dinámica}}
+Metodología de resolución de problemas de
+optimización (minimización o maximización) que consiste en dividir el
+problema en subproblemas con una jerarquía entre ellos (de menor a
+mayor tamaño). Cada subproblema puede ser utilizado ser reutilizado en
+diferentes subproblemas mayores.
+\par Para poder resolverse de forma óptima utilizando programación
+dinámica, un problema debe cumplir las siguientes propiedades:
+\begin{itemize}
+    \item \underline{Subestructura óptima:} Un problema contiene una subestructura
+    óptima si la solución óptima global del mismo contiene en su interior
+    las soluciones óptimas de sus subproblemas.
+
+    \item \underline{Subproblemas superpuestos:} Un problema contiene subproblemas
+    superpuestos si en la resolución de sus subproblemas vuelven a
+    aparecer subproblemas previamente calculados.
+\end{itemize}
+La programación dinámica emplea \textbf{Memorización}: Técnica que consiste
+en almacenar los resultados de los subproblemas previamente calculados para
+evitar repetir su resolución cuando vuelva a requerirse. De esa forma
+reducen la cantidad total de subproblemas a calcular, consiguiendo
+reducir significativamente la complejidad temporal de la solución.
+
+
+
+\subsubsection{Ventajas y desventajas}
+
+\paragraph{\underline{Similitudes}}
+\begin{itemize}
+    \item En todos ellos se divide un problema en subproblemas.
+    \item Greedy/Programación dinámica: Subestructura óptima, los subproblemas
+    tienen una jerarquía entre ellos.
+\end{itemize}
+
+\paragraph{\underline{Ventajas}}
+\begin{description}
+    \item[Greedy] \leavevmode \begin{itemize}
+        \item Suelen ser rápidos.
+        \item Fáciles de implementar.
+    \end{itemize}
+ 
+    \item[Programación dinámica] \leavevmode \begin{itemize}
+        \item La técnica de memorización permite reducir la complejidad temporal.
+    \end{itemize}
+ 
+    \item[División y conquista] \leavevmode \begin{itemize}
+        \item Permite la resolución de problemas complejos.
+        \item Es fácil de medir su complejidad.
+    \end{itemize}
+ 
+\end{description}
+
+\paragraph{\underline{Desventajas}}
+\begin{description}
+    \item[Greedy] \leavevmode \begin{itemize}
+        \item Es difícil de demostrar que para cada instancia de un problema se llega a la solución
+            óptima mediante un algoritmo greedy.
+        \item No todos los problemas se pueden solucionar con este método.
+    \end{itemize}
+ 
+    \item[Programación dinámica] \leavevmode \begin{itemize}
+        \item Se necesita mucha memoria para almacenar los resultados de los subproblemas.
+        \item Es posible que haya soluciones almacenadas en memoria que no se vuelvan a utilizar.
+    \end{itemize}
+ 
+    \item[División y conquista] \leavevmode \begin{itemize}
+        \item Al utilizarse soluciones de forma recursiva, se utiliza mucha memoria
+        del stack y esto puede traer problemas en casos grandes.
+    \end{itemize}
+ 
+\end{description}
+
+\paragraph{\underline{¿Podría elegir una técnica sobre las otras?}}\leavevmode
+
+No podría elegir una técnica sobre la otra, siempre dependerá de las propiedades
+del problema que tenga que resolver y los recursos disponibles.
+
+% FIN DEL DOCUMENTO (SECCIÓN P2.1)
+% NO BORRAR POR ACCIDENTE NI ESCRIBIR COSSA ABAJO
+\end{document}

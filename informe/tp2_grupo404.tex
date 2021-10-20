@@ -1,0 +1,275 @@
+\documentclass[titlepage,a4paper]{article}
+\PassOptionsToPackage{table,xcdraw}{xcolor}
+
+\usepackage{a4wide}
+\usepackage[colorlinks=true,linkcolor=black,urlcolor=blue,bookmarksopen=true]{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amssymb}
+\usepackage{bookmark}
+\usepackage{booktabs}
+\usepackage{cancel}
+\usepackage{caption}
+\usepackage{csquotes}
+\usepackage{subcaption}
+\usepackage{fancyhdr}
+\usepackage{fancyvrb,newverbs,xcolor} % Para lcverbatim
+\usepackage{fvextra}
+\usepackage[spanish]{babel}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[most]{tcolorbox}
+\usepackage{listings}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{standalone}
+\usepackage{subfiles}
+\usepackage{hyperref}
+\usepackage{cleveref}
+
+\crefname{table}{cuadro}{cuadros}
+\crefname{figure}{figura}{figuras}
+\crefname{section}{sección}{secciónes}
+\crefname{subsection}{sección}{secciónes}
+\crefname{subsubsection}{sección}{secciónes}
+
+\pagestyle{fancy} % Encabezado y pie de página
+\fancyhf{}
+\fancyhead[L]{Grupo 404 - TP2}
+\fancyhead[R]{Teoría de Algoritmos I - FIUBA}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyfoot[C]{\thepage}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% lcverbatim = Cuadro de código con fondo gris
+\definecolor{cverbbg}{gray}{0.93}
+\newenvironment{lcverbatim}
+ {\SaveVerbatim{cverb}}
+ {\endSaveVerbatim
+  \flushleft\fboxrule=0pt\fboxsep=.5em
+  \colorbox{cverbbg}{%
+    \makebox[\dimexpr\linewidth-2\fboxsep][l]{\BUseVerbatim{cverb}}%
+  }
+  \endflushleft
+}
+
+\begin{document}
+\begin{titlepage} % Carátula
+	\hfill\includegraphics[width=6cm]{img/logofiuba.jpg}
+    \centering
+    \vfill
+    \Huge \textbf{Trabajo Práctico 2}
+    \vskip2cm
+    \Large [7529/9506] Teoría de Algoritmos I\\
+    Segundo cuatrimestre de 2021
+    \vfill
+    \begin{tabular}{ | l | l | } % Datos del alumno
+      \hline
+      Grupo: & 404 \\ \hline
+      Repositorio: & github.com/lucashemmingsen/7529tp2 \\ \hline
+      Entrega: & nº 1 (20/10/2021) \\ \hline
+  	\end{tabular}
+    \vfill
+    \includestandalone[mode=tex,width=\textwidth]{src/integrantes}
+    \vfill
+\end{titlepage}
+
+\tableofcontents % Índice general
+\newpage
+
+\renewcommand{\thesection}{\Alph{section}}%
+\setcounter{section}{8} % Letra H
+
+\section{Introducción}\label{sec:intro}
+\subsection{Resumen}
+El presente informe documenta el enunciado y la solución del segundo trabajo práctico
+de la materia Teoría de Algoritmos I. El mismo comprende el análisis del problema
+planteado, la comparación de posibles algoritmos y la resolución manual del algoritmo
+de Johnsosn; así como también respuestas a preguntas teóricas.
+
+\subsection{Lineamientos básicos}
+\begin{itemize}
+    \item El trabajo se realizará en grupos de cinco personas.
+    \item Se debe entregar el informe en formato pdf y código fuente en (.zip) en el aula virtual de la materia.
+    \item El lenguaje de implementación es libre. Recomendamos utilizar C, C++ o Python. Sin embargo si se desea utilizar algún otro, se debe pactar con los docentes.
+    \item Incluir en el informe los requisitos y procedimientos para su compilación y ejecución. La ausencia de esta información no permite probar el trabajo y deberá ser re-entregado con esta información.
+    \item El informe debe presentar carátula con el nombre del grupo, datos de los integrantes y y fecha de entrega. Debe incluir número de hoja en cada página.
+    \item En caso de re-entrega, entregar un apartado con las correcciones mencionadas
+\end{itemize}
+
+\setcounter{section}{0}%
+\renewcommand{\thesection}{P\arabic{section}}%
+
+\newpage\section{Parte 1: Minimizando costos}\label{sec:parte1}
+
+\setcounter{subsection}{0}%
+\renewcommand{\thesubsection}{\alph{subsection}}%
+
+\subsection{Enunciado}
+
+Una empresa productora de tecnología está planeando construir una fábrica para un
+producto nuevo. Un aspecto clave en esa decisión corresponde a determinar dónde la
+ubicarán para minimizar los gastos de logística y distribución. Cuenta con N depósitos
+distribuidos en diferentes ciudades. En alguna de estas ciudades es donde deberá
+instalar la nueva fábrica. Para los transportes utilizarán las rutas semanales con las
+que ya cuentan. Cada ruta une dos depósitos en un sentido. No todos los depósitos
+tienen rutas que los conecten. Por otro lado, los costos de utilizar una ruta tienen
+diferentes valores. Por ejemplo hay rutas que requieren contratar más personal o
+comprar nuevos vehículos. En otros casos son rutas subvencionadas y utilizarlas les
+da una ganancia a la empresa. Otros factores que influyen son gastos de combustibles
+y peajes. Para simplificar se ha desarrollado una tabla donde se indica para cada
+ruta existente el costo de utilizarla (valor negativo si da ganancia).
+
+Los han contratado para resolver este problema.
+
+Han averiguado que se puede resolver el problema utilizando Bellman-Ford para cada
+par de nodos o Floyd-Warshall en forma general. Un amigo les sugiere utilizar el
+algoritmo de Johnson. Aclaración: ¡No existen ciclos negativos!
+
+\noindent Se pide:
+
+\begin{enumerate}
+    \item Investigar el algoritmo de Johnson y explicar cómo funciona. ¿Es óptimo?
+    \item En una tabla comparar la complejidad temporal y espacial de las tres propuestas.
+    \item Analizar en qué situaciones una solución es mejor que otras.
+    \item Crear un ejemplo con 5 depósitos y mostrar paso a paso cómo lo resolvería el algoritmo de Johnson.
+    \item ¿Puede decirse que Johnson utiliza en su funcionamiento una metodología greedy? Justifique.
+    \item ¿Puede decirse que Johnson utiliza en su funcionamiento una metodología de programación dinámica? Justifique.
+    \item Programar la solución usando el algoritmo de Johnson.
+\end{enumerate}
+
+\subsection{Formato de los archivos}\label{enuncFormatoArchivos}
+Formato de los archivos:
+El programa debe recibir por parámetro el path del archivo donde se encuentran los
+costos entre cada depósito. El archivo debe ser de tipo texto y presentar por renglón,
+separados por coma un par de depósitos con su distancia.
+
+Ejemplo: “depositos.txt”
+
+\begin{lcverbatim}
+    A,B,54
+    A,D,-3
+    B,C,8
+    …
+\end{lcverbatim}
+
+Debe resolver el problema y retornar por pantalla la solución. Debe mostrar por
+consola en en que ciudad colocar el depósito. Además imprimir en forma de matriz los
+costos mínimos entre cada uno de los depósitos.
+
+\setcounter{subsection}{0}%
+\renewcommand{\thesubsection}{\arabic{subsection}}%
+
+\newpage\subsection{Algoritmo de Johnson: funcionamiento}\label{sec:parte1_1}
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=Enunciado P1.1]
+    Investigar el algoritmo de Johnson y explicar cómo funciona. ¿Es óptimo?
+\end{tcolorbox}
+
+\subfile{src/resol1_1}
+
+\filbreak
+\subsection{Comparación de algoritmos: Complejidad}\label{sec:parte1_2}
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=Enunciado P1.2]
+    En una tabla comparar la complejidad temporal y espacial de las tres propuestas.
+\end{tcolorbox}
+
+\subfile{src/resol1_2}
+
+\filbreak\subsection{Comparación de algoritmos: Ventajas y desventajas}\label{sec:parte1_3}
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=Enunciado P1.3]
+    Analizar en qué situaciones una solución es mejor que otras.
+\end{tcolorbox}
+
+\subfile{src/resol1_3}
+
+\newpage\subsection{Algoritmo de Johnson: resolución manual}\label{sec:parte1_4}
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=Enunciado P1.4]
+    Crear un ejemplo con 5 depósitos y mostrar paso a paso cómo lo resolvería el algoritmo de Johnson.
+\end{tcolorbox}
+
+\subfile{src/resol1_4}
+
+\newpage\subsection{Metodología Greedy}\label{sec:parte1_5}
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=Enunciado P1.5]
+    ¿Puede decirse que Johnson utiliza en su funcionamiento una metodología greedy? Justifique.
+\end{tcolorbox}
+
+\subfile{src/resol1_5}
+
+\filbreak\subsection{Programación dinámica}\label{sec:parte1_6}
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=Enunciado P1.6]
+    ¿Puede decirse que Johnson utiliza en su funcionamiento una metodología de programación dinámica? Justifique.
+\end{tcolorbox}
+
+\subfile{src/resol1_6}
+
+\newpage\subsection{Programa con solución}\label{sec:parte1_7}
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=Enunciado P1.7]
+    Programar la solución usando el algoritmo de Johnson.
+\end{tcolorbox}
+
+\subfile{src/resol1_7}
+
+
+
+\setcounter{section}{1}%
+\renewcommand{\thesection}{P\arabic{section}}%
+
+\newpage\section{Parte 2: Un poco de teoría}\label{sec:parte2}
+
+\setcounter{subsection}{0}%
+\renewcommand{\thesubsection}{\alph{subsection}}%
+
+\subsection{Enunciado}
+
+\begin{enumerate}
+\item Hasta el momento hemos visto 3 formas distintas de resolver problemas.
+    Greedy, división y conquista y programación dinámica. \begin{enumerate}
+        \item Describa brevemente en qué consiste cada una de ellas.
+        \item Identifique similitudes, diferencias, ventajas y
+        desventajas entre las mismas. ¿Podría elegir una técnica sobre las otras?
+    \end{enumerate}
+\item Tenemos un problema que puede ser resuelto por un algoritmo Greedy (G) y
+    por un algoritmo de Programación Dinámica (PD). G consiste en realizar múltiples
+    iteraciones sobre un mismo arreglo, mientras que PD utiliza la información del
+    arreglo en diferentes subproblemas a la vez que requiere almacenar dicha
+    información calculada en cada uno de ellos, reduciendo así su complejidad;
+    de tal forma logra que O(PD) < O(G). Sabemos que tenemos limitaciones en nuestros
+    recursos computacionales (CPU y principalmente memoria).\\
+    ¿Qué algoritmo elegiría para resolver el problema?\par
+    Pista: probablemente no haya una respuesta correcta para este problema, solo justificaciones correctas.
+\end{enumerate}
+
+\setcounter{subsection}{0}%
+\renewcommand{\thesubsection}{\arabic{subsection}}%
+
+\newpage\subsection{Formas de resolución de problemas}\label{sec:parte2_1}
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=Enunciado P2.1]
+    Hasta el momento hemos visto 3 formas distintas de resolver problemas.
+    Greedy, división y conquista y programación dinámica. \begin{enumerate}
+        \item Describa brevemente en qué consiste cada una de ellas.
+        \item Identifique similitudes, diferencias, ventajas y
+        desventajas entre las mismas. ¿Podría elegir una técnica sobre las otras?
+    \end{enumerate}
+\end{tcolorbox}
+
+\subfile{src/resol2_1}
+
+\newpage\subsection{Caso teórico puntual}\label{sec:parte2_2}
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=Enunciado P2.2]
+    Tenemos un problema que puede ser resuelto por un algoritmo Greedy (G) y
+    por un algoritmo de Programación Dinámica (PD). G consiste en realizar múltiples
+    iteraciones sobre un mismo arreglo, mientras que PD utiliza la información del
+    arreglo en diferentes subproblemas a la vez que requiere almacenar dicha
+    información calculada en cada uno de ellos, reduciendo así su complejidad;
+    de tal forma logra que O(PD) < O(G). Sabemos que tenemos limitaciones en nuestros
+    recursos computacionales (CPU y principalmente memoria).\\
+    ¿Qué algoritmo elegiría para resolver el problema?
+\end{tcolorbox}
+
+\subfile{src/resol2_2}
+
+
+% FIN DEL DOCUMENTO
+% NO BORRAR POR ACCIDENTE NI ESCRIBIR COSSA ABAJO
+\end{document}
